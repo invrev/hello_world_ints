@@ -14,6 +14,15 @@ mirror tree ,count number of nodes (bst.cpp)
 11.replace spaces with %20 (cc_int_1.cpp).
 12.rotate mat by 90 (cc_int_1.cpp).
 13.Convert row and col = 0 if found 0 (cc_int_1.cpp).
-
-
+14.Decode the give xl columns string like AA,AB (excel_sheet_column_decoding.cpp)
+15.BFS traversal (bfs_bst.cpp)
+16.flood fill (flood_fill.cpp) backtracking with memory to avoid repeat traversal
+17.gcd  (recursion)
+18.matrix spiral order traversal (spiral_order.cpp)
+19.Maze traversal  (maze.cpp)
+20.Find # of k between 0 to n (find_no_of_k.cpp)
+21.Two sum on sorted array (twosum.cpp)
+22.find longest increasing consecutive sequence (find_longest_inc_substr.cpp)
+23.get larget palindrome (get_largest_palindrome.cpp)
+24.quick sort,merge sort (quick_sort.cpp,merge_sort.cpp)
 

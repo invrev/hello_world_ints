@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+//Rotate array by k places
 void do_swap  (char *a,char *b) {
     char *tmp = a;
     a = b;
@@ -9,16 +10,14 @@ void do_swap  (char *a,char *b) {
 
 //Recursive solution
 void in_place_rec_movement (char arr[],int start,int end) {
-
-        while (start < end)  {
-           //do_swap (arr[start],arr[end]);
-           char tmp = arr[start];
-           arr[start] = arr[end];
-           arr[end] = tmp;
-           start++;
-           end--;
-        }
-
+    while (start < end)  {
+        //do_swap (arr[start],arr[end]);
+        char tmp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = tmp;
+        start++;
+        end--;
+    }
 }
 
 //Iterative solution
