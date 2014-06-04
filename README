@@ -1,1 +1,19 @@
-1.Rotate 1-d array
+1.Rotate 1-d array (rotate_array_in_place.cpp)
+2.parity check  (partiy_check.cpp)
+3.Reverse ll (linked_lst.cpp)
+4.find cycle in ll (linked_lst.cpp)
+5.Merge sorted ll (linked_lst.cpp)
+6.Test overlapping of the list (linked_lst.cpp)
+5.number palindrome (number_palindrome.cpp)
+6.Search element in BST,traversal,print all paths,
+mirror tree ,count number of nodes (bst.cpp)
+7.string check uniqueness
+8.Reverse c-style string
+9.Check anagram (cc_int_1.cpp).
+10.Remove duplicate (cc_int_1.cpp).
+11.replace spaces with %20 (cc_int_1.cpp).
+12.rotate mat by 90 (cc_int_1.cpp).
+13.Convert row and col = 0 if found 0 (cc_int_1.cpp).
+
+
+
