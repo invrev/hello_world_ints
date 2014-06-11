@@ -25,4 +25,13 @@ mirror tree ,count number of nodes (bst.cpp)
 22.find longest increasing consecutive sequence (find_longest_inc_substr.cpp)
 23.get larget palindrome (get_largest_palindrome.cpp)
 24.quick sort,merge sort (quick_sort.cpp,merge_sort.cpp)
+25.generate fibonaci seq (fibo.c)
+print the robot path (get_robot_path.cpp)
+find n_queen placement (n_queen.cpp)
+paint fill like flood fill (paint_fill.cpp)
+compute # ways compute the coins (rec_coin.cpp)
+backtrack skeleton (recur_backtrack.cpp)
+recusive parenthesis (recur_parenthesis.cpp)
+recusive string use of permutation network (recur_string.cpp)
+
 
