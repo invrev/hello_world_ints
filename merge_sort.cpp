@@ -73,15 +73,14 @@ void merge (int arr[],int start,int mid,int end) {
                 }
            } else {
                 //cout << "STILLL REMAIN>>>>>>>>>>>>>>"  << endl;
-                //while (left_node != 0) {
-                //    arr[i] = left_node -> data;
-                //    left_node = left_node -> next;
-                //}
-                //while (right_node != 0) {
-                //    arr[i] = right_node -> data;
-                //    right_node = right_node -> next;
-                //}
-
+                while (left_node != 0) {
+                    arr[i] = left_node -> data;
+                    left_node = left_node -> next;
+                }
+                while (right_node != 0) {
+                    arr[i] = right_node -> data;
+                    right_node = right_node -> next;
+                }
            }
 
        }
