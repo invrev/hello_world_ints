@@ -1,192 +1,192 @@
-stack-overflow candidate problems
-    atoi
-    binary_search 
-
-Max Points on a Line 
-Sort List 
-Insertion Sort List 
-LRU Cache 
-Word Break II 
-Word Break 
-Candy 
-Clone Graph 
-Longest Consecutive Sequence 
-Word Ladder II 
-Word Ladder 
-Triangle 
-Distinct Subsequences 
-Scramble String 
-Partition List 
-Maximal Rectangle 
-Largest Rectangle in Histogram 
-Word Search 
-Minimum Window Substring 
-Wildcard Matching 
-Trapping Rain Water 
-First Missing Positive 
-Sudoku Solver 
-Valid Sudoku 
-Substring with Concatenation of All Words 
-Longest Common Prefix 
-Container With Most Water 
-ZigZag Conversion 
-Longest Substring Without Repeating Characters 
-
-Tricky
-    Count and Say 
-    Regular Expression Matching  (NFA : Robert sed)
-    Implement strStr() (NFA : Robert sed)
-    Remove Duplicates from Sorted List II 
-    Remove Duplicates from Sorted List 
-    Remove Duplicates from Sorted Array II 
-    Remove Element 
-    Remove 1's  from array
-
-Binary tree
-    (Type of traversal in BT : DFS,BFS,parallel)    
-    Minimum Path Sum 
-    Unique Paths II 
-    Unique Paths 
-    Sum Root to Leaf Numbers 
-    Binary Tree Maximum Path Sum 
-    Flatten Binary Tree to Linked List 
-    Path Sum II 
-    Path Sum 
-    Minimum Depth of Binary Tree 
-    Balanced Binary Tree 
-    Binary Tree Level Order Traversal II 
-    Construct Binary Tree from Inorder and Postorder Traversal
-    Construct Binary Tree from Preorder and Inorder Traversal
-    Maximum Depth of Binary Tree 
-    Symmetric Tree 
-    Same Tree 
-    Populating Next Right Pointers in Each Node II 
-    Populating Next Right Pointers in Each Node 
-
-BST 
-    Convert Sorted List to Binary Search Tree 
-    Convert Sorted Array to Binary Search Tree 
-    Recover Binary Search Tree 
-    Validate Binary Search Tree 
-    Unique Binary Search Trees II 
-    Unique Binary Search Trees 
-
-Binary-search
-    Median of Two Sorted Arrays 
-    Sqrt(x) 
-    Search in Rotated Sorted Array 
-    Search in Rotated Sorted Array II 
-    Search a 2D Matrix 
-    Search for a Range 
-    Search Insert Position 
-
-2-D matrix
-    Spiral Matrix II 
-    Spiral Matrix 
-    Rotate Image 
-    Set Matrix Zeroes 
-    Surrounded Regions 
-
-Merge 
-    Merge k Sorted Lists 
-    Merge Sorted Array 
-    Merge Two Sorted Lists 
-
-Stack
-    Binary Tree Postorder Traversal 
-    Binary Tree Preorder Traversal 
-    Binary Tree Inorder Traversal 
-    Evaluate Reverse Polish Notation 
-    Simplify Path 
-    Binary Tree Zigzag Level Order Traversal 
-    Reverse Words in a String 
-    Valid Parentheses 
-
-Queue
-    Binary Tree Level Order Traversal 
-
-Bitwise operation
-    Single Number  (XOR magic)
-    Single Number II 
-
-Intelligent Sorting 
-    Two Sum 
-    4Sum 
-    3Sum Closest 
-    3Sum 
-    Combination Sum II 
-    Combination Sum 
-    Remove Duplicates from Sorted Array 
-    Sort Colors 
-
-Data structure
-    Insert Interval 
-    Merge Intervals 
-
-DP
-    Palindrome Partitioning II 
-    Palindrome Partitioning 
-    Longest Palindromic Substring 
-    Pow(x, n) 
-    Edit Distance 
-    Climbing Stairs 
-    Gas Station 
-    Text Justification 
-    Best Time to Buy and Sell Stock III 
-    Best Time to Buy and Sell Stock II 
-    Best Time to Buy and Sell Stock 
-    Pascal's Triangle II 
-    Pascal's Triangle 
-    Jump Game 
-    Jump Game II 
-    Maximum Subarray 
-    Interleaving String 
-    Longest Valid Parentheses 
-
-Arrays and strings
-    String to Integer (atoi) 
-    Reverse Integer 
-    Palindrome Number 
-    Roman to Integer 
-    Integer to Roman 
-    Divide Two Integers 
-    Multiply Strings 
-    Plus One 
-    Anagrams 
-    Add Two Numbers 
-    Add Binary 
-    Valid Number 
-    Valid Palindrome 
-    Length of Last Word 
-
-Linked List + Tricky algo
-    Remove Nth Node From End of List 
-    Reorder List 
-    Linked List Cycle II 
-    Linked List Cycle 
-
-Linked list
-    Reverse Linked List II 
-    Copy List with Random Pointer 
-    Reverse Nodes in k-Group 
-    Swap Nodes in Pairs 
-    Rotate List 
-
-Backtracking
-    Generate Parentheses 
-    Permutation Sequence 
-    Permutations II 
-    Permutations 
-    Letter Combinations of a Phone Number 
-    N-Queens II 
-    N-Queens 
-    Next Permutation 
-    Subsets 
-    Restore IP Addresses 
-    Subsets II 
-    Decode Ways 
-    Gray Code 
-    Combinations 
+* stack-overflow candidate problems
+*     atoi
+*     binary_search 
+* 
+* Max Points on a Line 
+* Sort List 
+* Insertion Sort List 
+* LRU Cache 
+* Word Break II 
+* Word Break 
+* Candy 
+* Clone Graph 
+* Longest Consecutive Sequence 
+* Word Ladder II 
+* Word Ladder 
+* Triangle 
+* Distinct Subsequences 
+* Scramble String 
+* Partition List 
+* Maximal Rectangle 
+* Largest Rectangle in Histogram 
+* Word Search 
+* Minimum Window Substring 
+* Wildcard Matching 
+* Trapping Rain Water 
+* First Missing Positive 
+* Sudoku Solver 
+* Valid Sudoku 
+* Substring with Concatenation of All Words 
+* Longest Common Prefix 
+* Container With Most Water 
+* ZigZag Conversion 
+* Longest Substring Without Repeating Characters 
+* 
+* Tricky
+*     Count and Say 
+*     Regular Expression Matching  (NFA : Robert sed)
+*     Implement strStr() (NFA : Robert sed)
+*     Remove Duplicates from Sorted List II 
+*     Remove Duplicates from Sorted List 
+*     Remove Duplicates from Sorted Array II 
+*     Remove Element 
+*     Remove 1's  from array
+* 
+* Binary tree
+*     (Type of traversal in BT : DFS,BFS,parallel)    
+*     Minimum Path Sum 
+*     Unique Paths II 
+*     Unique Paths 
+*     Sum Root to Leaf Numbers 
+*     Binary Tree Maximum Path Sum 
+*     Flatten Binary Tree to Linked List 
+*     Path Sum II 
+*     Path Sum 
+*     Minimum Depth of Binary Tree 
+*     Balanced Binary Tree 
+*     Binary Tree Level Order Traversal II 
+*     Construct Binary Tree from Inorder and Postorder Traversal
+*     Construct Binary Tree from Preorder and Inorder Traversal
+*     Maximum Depth of Binary Tree 
+*     Symmetric Tree 
+*     Same Tree 
+*     Populating Next Right Pointers in Each Node II 
+*     Populating Next Right Pointers in Each Node 
+* 
+* BST 
+*     Convert Sorted List to Binary Search Tree 
+*     Convert Sorted Array to Binary Search Tree 
+*     Recover Binary Search Tree 
+*     Validate Binary Search Tree 
+*     Unique Binary Search Trees II 
+*     Unique Binary Search Trees 
+* 
+* Binary-search
+*     Median of Two Sorted Arrays 
+*     Sqrt(x) 
+*     Search in Rotated Sorted Array 
+*     Search in Rotated Sorted Array II 
+*     Search a 2D Matrix 
+*     Search for a Range 
+*     Search Insert Position 
+* 
+* 2-D matrix
+*     Spiral Matrix II 
+*     Spiral Matrix 
+*     Rotate Image 
+*     Set Matrix Zeroes 
+*     Surrounded Regions 
+* 
+* Merge 
+*     Merge k Sorted Lists 
+*     Merge Sorted Array 
+*     Merge Two Sorted Lists 
+* 
+* Stack
+*     Binary Tree Postorder Traversal 
+*     Binary Tree Preorder Traversal 
+*     Binary Tree Inorder Traversal 
+*     Evaluate Reverse Polish Notation 
+*     Simplify Path 
+*     Binary Tree Zigzag Level Order Traversal 
+*     Reverse Words in a String 
+*     Valid Parentheses 
+* 
+* Queue
+*     Binary Tree Level Order Traversal 
+* 
+* Bitwise operation
+*     Single Number  (XOR magic)
+*     Single Number II 
+* 
+* Intelligent Sorting 
+*     Two Sum 
+*     4Sum 
+*     3Sum Closest 
+*     3Sum 
+*     Combination Sum II 
+*     Combination Sum 
+*     Remove Duplicates from Sorted Array 
+*     Sort Colors 
+* 
+* Data structure
+*     Insert Interval 
+*     Merge Intervals 
+* 
+* DP
+*     Palindrome Partitioning II 
+*     Palindrome Partitioning 
+*     Longest Palindromic Substring 
+*     Pow(x, n) 
+*     Edit Distance 
+*     Climbing Stairs 
+*     Gas Station 
+*     Text Justification 
+*     Best Time to Buy and Sell Stock III 
+*     Best Time to Buy and Sell Stock II 
+*     Best Time to Buy and Sell Stock 
+*     Pascal's Triangle II 
+*     Pascal's Triangle 
+*     Jump Game 
+*     Jump Game II 
+*     Maximum Subarray 
+*     Interleaving String 
+*     Longest Valid Parentheses 
+* 
+* Arrays and strings
+*     String to Integer (atoi) 
+*     Reverse Integer 
+*     Palindrome Number 
+*     Roman to Integer 
+*     Integer to Roman 
+*     Divide Two Integers 
+*     Multiply Strings 
+*     Plus One 
+*     Anagrams 
+*     Add Two Numbers 
+*     Add Binary 
+*     Valid Number 
+*     Valid Palindrome 
+*     Length of Last Word 
+* 
+* Linked List + Tricky algo
+*     Remove Nth Node From End of List 
+*     Reorder List 
+*     Linked List Cycle II 
+*     Linked List Cycle 
+* 
+* Linked list
+*     Reverse Linked List II 
+*     Copy List with Random Pointer 
+*     Reverse Nodes in k-Group 
+*     Swap Nodes in Pairs 
+*     Rotate List 
+* 
+* Backtracking
+*     Generate Parentheses 
+*     Permutation Sequence 
+*     Permutations II 
+*     Permutations 
+*     Letter Combinations of a Phone Number 
+*     N-Queens II 
+*     N-Queens 
+*     Next Permutation 
+*     Subsets 
+*     Restore IP Addresses 
+*     Subsets II 
+*     Decode Ways 
+*     Gray Code 
+*     Combinations 
 
 References
 
