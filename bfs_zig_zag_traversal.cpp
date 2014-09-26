@@ -208,12 +208,29 @@ void postorder_iterative_1 (tree_node *root) {
 }
 
 
+vector<int> dfs_bfs_vector;
+void do_bfs_in_dfs_manner (tree_node *root) {
+    if (root) {
+        dfs_bfs_vector.push_back(root->data);
+        do_bfs_in_dfs_manner (root->left);
+        do_bfs_in_dfs_manner (root->right);
+    }
+}
+
+
 int main () {
     int input_arr[]  = {20,12,3,14,39,28,40,41,45,47,49};
     tree_node *root = 0; 
     for (int i=0;i<11;i++) {
         root = create_bst (input_arr[i],root);
     }
+
+    do_bfs_in_dfs_manner (root);
+    int len = dfs_bfs_vector.size();
+    for (int i=0;i<len;i++) {
+        cout << dfs_bfs_vector[i] << " ";
+    }
+    cout << endl;
     inorder_traversal(root);
     cout << endl;
     bfs_traversal (root);

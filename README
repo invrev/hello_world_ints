@@ -64,3 +64,8 @@ mirror tree ,count number of nodes (bst.cpp)
 61.two sum (two_sum.cpp)
 62.zig-zag traversal (bfs_zig_zag_traversal.cpp)
 63.post order iterative traversal (bfs_zig_zag_traversal.cpp)
+64.length of last word (length_of_last_word.cpp)
+65.length of last word (length_of_last_word.cpp)
+66.Plus one to string  (add_to_msb.cpp)
+67.linked list recursive + iterative reversal (add_to_msb.cpp)
+68.linked list nth node remove 
