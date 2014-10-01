@@ -1,0 +1,12 @@
+ for (int i=0;i<n;i++) {
+    int oldpositive_product = max(current_positive_product,1);
+    if (A[i] > 0) {
+        current_positive_product = oldpositive_product*A[i];
+        mini *= A[i];
+
+    } else {
+        current_positive_product = mini*A[i];
+        mini = oldpositive_product*A[i];
+    }
+    out = max(out,current_positive_product);
+}
