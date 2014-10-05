@@ -1,5 +1,7 @@
 #include<iostream>
 #include<string>
+#include<vector>
+#include<math.h>
 using namespace std;
 
 //solve the 
@@ -59,9 +61,22 @@ void enumerate (int a[] ,int k,int solution_size) {
 }
 
 
+vector<int> gray_code_vec;
+
+void print_gray_code(int a[],int k) {
+    int sum = 0;
+    for (int i=k,j=0;i>=0;i--,j++) {
+        //cout << a[i] << ",";
+        int multiplier = pow(2,j);
+        sum += (multiplier * a[i]);
+    }
+    //cout << endl;
+    gray_code_vec.push_back(sum);
+}
+
 void gray_code_enumerate (int a[] ,int k,int solution_size) {
     if (k == (solution_size-1) ) {
-        print_array(a);
+       print_gray_code(a,k);
     } else {
         k = k + 1;
         gray_code_enumerate (a,k,solution_size); //(n-1) !
@@ -84,6 +99,10 @@ int main () {
 
     cout << "----------------" << endl;
 
-    int b[] = {0,0,0};
-    gray_code_enumerate (b,-1,3);
+    int b[] = {0,0};
+    gray_code_enumerate (b,-1,2);
+    for (int i=0;i<gray_code_vec.size();i++) {
+        cout << gray_code_vec[i] << ",";
+    }
+    cout << endl;
 }
