@@ -69,3 +69,4 @@ mirror tree ,count number of nodes (bst.cpp)
 66.Plus one to string  (add_to_msb.cpp)
 67.linked list recursive + iterative reversal (add_to_msb.cpp)
 68.linked list nth node remove 
+69.Palindrome string (strings/is_palindorme.cpp)

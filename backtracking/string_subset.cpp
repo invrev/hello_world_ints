@@ -46,7 +46,6 @@ void print_array (int a[]) {
 
 }
 
-
 //
 void enumerate (int a[] ,int k,int solution_size) {
     if (k == (solution_size-1) ) {
@@ -60,9 +59,7 @@ void enumerate (int a[] ,int k,int solution_size) {
     }
 }
 
-
 vector<int> gray_code_vec;
-
 void print_gray_code(int a[],int k) {
     int sum = 0;
     for (int i=k,j=0;i>=0;i--,j++) {
@@ -93,12 +90,9 @@ int main () {
     //string_permute(path,-1,3);
     //do_exchange (path,1, 2);
     //cout << " the name = " << path<< endl;
-
     int a[] = {0,0,0};
     enumerate (a,-1,3);
-
     cout << "----------------" << endl;
-
     int b[] = {0,0};
     gray_code_enumerate (b,-1,2);
     for (int i=0;i<gray_code_vec.size();i++) {
