@@ -12,6 +12,9 @@ void print_2_d_array(int mat[][4],int len) {
     }
 }
 
+
+
+
 void convert_row_col_to_zero_with_bit_vector (int mat[][4],int len,int width,int i,int j) {
     
         //Though @the machine level bit represented as either little or big endian it has no effect on shift operation
@@ -118,4 +121,8 @@ int main () {
     convert_row_col_to_zero(mat_2,4,4,3,3);
     cout << endl;
     convert_row_col_to_zero_with_bit_vector(mat_2,4,4,3,3);
+
+
+
+
 }

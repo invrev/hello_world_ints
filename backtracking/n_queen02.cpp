@@ -2,6 +2,8 @@
 #include<string>
 #include<vector>
 
+//FYR : https://www.cs.utexas.edu/users/EWD/transcriptions/EWD03xx/EWD316.9.html#contents
+
 using namespace std;
 
 /* Things to consider

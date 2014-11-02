@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
 
+//https://www.cs.utexas.edu/users/EWD/transcriptions/EWD03xx/EWD316.9.html#contents
+
 /* Things to consider
 * 1.At max,# of queens in the ROW = 1.
 * 2.At max,# of queens in the col = 1

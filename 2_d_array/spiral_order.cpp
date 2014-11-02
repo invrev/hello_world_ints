@@ -3,7 +3,8 @@ using namespace std;
 
 //dir #0 : -> #1 | #2 <- #3 |
 //Change arr_[x][y] = -99 To avoid revisit Remember flood fill
-void print_spiral_order (int arr_[][4],int len_,int top,int bottom,int left,int right,int x,int y,int dir) {
+void print_spiral_order (int arr_[][4],int len_,int top,int bottom
+        ,int left,int right,int x,int y,int dir) {
     if (right >= left && top <= bottom)  {
         if (y < right && dir == 0 && arr_[x][y] != -99)  {
             cout <<  arr_[x][y] << " right ";
@@ -56,15 +57,12 @@ void print_spiral_order (int arr_[][4],int len_,int top,int bottom,int left,int 
 }
 
 int main () {
-
     //int arr_ [][3] = {
     //    {1,2,3} 
     //    ,{4,5,6}
     //    ,{7,8,9}
     //};
     //print_spiral_order(arr_,3,0,2,0,2,0,0,0);
-
-
     int arr_ [][4] = {
         {1,2,3,8} 
         ,{4,5,6,10}
