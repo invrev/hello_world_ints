@@ -34,6 +34,7 @@ int trap(int A[], int n) {
 }
 
 //Instead of storing the values in the array store in the variables left_max and right_max
+//With O(C) space
 int trap0 (int A[],int n) {
 
     if (!n) {
