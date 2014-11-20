@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
-//If sorted element contains duplicate element
 
+//If sorted element contains duplicate element
 bool search(int A[], int n, int key) {
     int start = 0, end = n - 1;
 
