@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>CSE 250: Data Structures in C++</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Hung Q. Ngo" />
+  <meta name="keywords" content="Hung Q. Ngo, Data Structure, C++" />
+  <meta name="description" content="Data Structures in C++" />
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/hungngo.css" rel="stylesheet">     
+  <link href="../css/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../css/prettify.js"></script>
+  </head>
+
+<body  onload="prettyPrint()">
+
+<!-- ************** Body **************** -->
+<div class="container">
+
+<h2>Assignment 8, Due at 11:59pm, Tue Nov 25. (Absolute!)</h2>
+
+<h3>Objectives</h3>
+
+<p>
+<ul>
+ <li> Put together a small but complete program. I will not supply a code base this time. You will build everything "from scratch". However, please feel free to use <em>any</em> piece of code I have posted so far. In particular, I strongly suggest you make use of the main program's skeleton we have been using and the <code>Makefile</code> (modify it!) and other components you've been working with.
+ <li> Implement the vector-based <code>MaxHeap</code> data structure in C++. In particular, by completing this assignment you will have implemented a fully featured data structure along with a driver to test the data structure. 
+</ul>
+
+<h3>What to do</h3>
+
+You are to write a C++ program that does the following. 
+
+<ol>
+ <li> It keeps reading user's inputs, line by line. Each input line the user
+ types is supposed to be in one of the following forms:
+
+<pre>
+new heapname = [list of integers separated by space]
+top heapname
+pop heapname
+push heapname [an integer]
+print heapname
+exit
+</pre>
+
+where 
+<ul>
+ <li> <code>exit</code> tells your program to quit 
+ <li> <code>heapname</code> is an identifier (you can just think of it 
+ as a valid C++ variable name). For example, <code>a, _a34, counter</code> are 
+ all valid variable names.
+ <li> <code>[list of integers separated by space]</code> is ...  
+ a list of integers separated by spaces, such as 
+ <code>3 8 -10 2 0</code>
+ <li> <code>[an integer]</code> is any integer, such as <code>531</code> or <code>-3</code>
+ <li> <code>new</code> tells your program to create a new max-heap of integers,
+ implemented using the <code>UBHeap</code> class (whose interface is given below). The heap contains all members of the given list of integers. If <code>[list of integers separated by space]</code> is empty, then an empty heap is created.
+ <li> <code>top heapname</code> prints the top element of the heap named <code>heapname</code>. If the heap is empty, then <code>Heap is Empty</code> error is printed.
+ <li> <code>pop heapname</code> removes the maximum element from the heap without printing anything. If the heap is empty, then <code>Heap is Empty</code> error is printed.
+ <li> <code>push heapname [an integer]</code> inserts the integer into the heap.
+
+ <li> To get a sense of what the program is supposed to do, please
+ download <a href="ubheap">my implementation</a> named <code>ubheap</code>. 
+ The binary can run under <code>timberlake</code> as usual. You can get it by
+ typing
+<pre>
+wget http://www.cse.buffalo.edu/~hungngo/classes/2014/Fall/250/assignments/ubheap
+chmod 700 ubheap
+</pre>
+ 
+ Here is a sample run of <code>ubheap</code>:
+
+ <pre>
+[HQN@mymachine] $ ubheap
+UBHeap: build and test a Heap data structure
+hqn
+Version 0.7, comes with NO WARRANTY
+
+&gt; new a = 9 -1 10 2 -3
+&gt; print a
+10 2 9 -1 -3 
+&gt; top a
+10
+&gt; pop a
+&gt; push a 20
+&gt; print a
+20 9 -3 -1 2 
+&gt; top a
+20
+&gt; pop a
+&gt; pop a
+&gt; pop a
+&gt; pop a
+&gt; print a
+-3 
+&gt; pop a
+&gt; top a
+** ERROR **
+Heap is Empty
+&gt; pop a
+** ERROR **
+Heap is Empty
+&gt; new b = 3 1 5 3 2
+&gt; push b 3
+&gt; print b
+5 3 3 1 2 3 
+&gt; top b
+5
+&gt; exit
+</pre>
+
+<li> The heaps <strong>must be of type <code>UBHeap</code>, whose interface is defined below. In particular you must use the given header file as is.</strong> It would be helpful for you to read the <a href="http://cse250.wordpress.com/2014/11/03/priority-queues-heap-and-heap-sort/">lecture notes</a> on priority queue. Most of this assignment is really about copy-and-paste the correct things from a previous assignment, and 
+ read the lecture notes.
+</ol>
+
+<h3>The <code>UBHeap</code> class</h3>
+
+<pre class="prettyprint" id="Cpp">
+// ============================================================================ 
+// UBHeap.h
+// ~~~~~~~~
+// YOUR NAME
+// - a simple Max Heap class
+// - THIS FILE MUST BE USED AS IS, Except for the "YOUR NAME" field above
+// ============================================================================ 
+
+#ifndef UBHeap_H_
+#define UBHeap_H_
+
+#include &lt;vector>
+
+class UBHeap
+{
+public:
+    /**
+     * construct a heap from a given array
+     * since this has a default parameter, there's a lurking default
+     * constructor in here too
+     */
+    explicit UBHeap(const std::vector&lt;int>& a = std::vector&lt;int>()); 
+
+    UBHeap& operator=(const UBHeap& theOther); // assignment operator
+
+    std::string toString();      // print all members of the heap
+    void push(int);              // insert a new int to the heap
+    void pop();                  // remove the max element from the heap
+    int top();                   // return but not remove the max element
+    bool empty();                // return whether the current heap is empty
+
+private:
+    std::vector&lt;int> heap_; // storing the heap using an array
+    void heapify();         // heapify the array stored in heap_
+    void sink(size_t i);    // sink the node whose index is i
+    void floatUp(size_t i); // float the node whose index is i
+};
+
+#endif
+</pre>
+
+<h3>Specific requirements for your code</h3>
+
+<ol>
+    <li> You must use <code>UBHeap.h</code> (above) as is. (Put your name there if you want to.)
+    <li> You must supply a <code>UBHeap.cpp</code> file that implements the interface given in <code>UBHeap.h</code>.
+    <li> The rest of the header and source files are up to you.
+    <li> You must supply a <code>Makefile</code>. When we type <code>make</code>, the <code>Makefile</code> produces an executable named <code>ubheap</code>. When we type <code>make clean</code> the <code>Makefile</code> will help remove all temporary object files and the executable, leaving only the source files.
+</ol>
+
+<h3>How to submit</h3>
+
+Put all source files under a directory named <code>A8</code>. Before you submit, make sure you do a <code>make clean</code>. What you will submit is the tarred ball <code>A8.tar</code>
+
+<pre>
+cd ..
+tar -cvf A8.tar A8/*
+submit_cse250 A8.tar
+</pre>
+
+Note that the above line only works if you logged in to your CSE account and 
+the directory is there. All previous things can be done at home, as long as 
+you remember to upload the final file to your CSE account and run 
+the submit script from there.
+
+<h3>Grading</h3>
+
+<ul>
+    <li> 0 point if typing <code>make</code> in the submitted directory does not produce an executable named <code>ubheap</code>. In particular, if there is any compilation error (using <code>/usr/bin/g++</code> in <code>timberlake</code>) then no point shall be given. Please even try to remove all warnings. It's a very important professional practice to remove all warnings from the compilation stage.
+    <li> 0 point if there is no <code>UBHeap.cpp</code> implementation of <code>UBHeap.h</code> above.
+    <li> 20 points if <code>new</code> and <code>print</code> work. (The way to test if <code>new</code> works is to see the <code>print</code> output.)
+    <li> 20 points if <code>top</code> works.
+    <li> 20 points if <code>pop</code> works.
+    <li> 20 points if <code>push</code> works.
+    <li> 10 points if user errors are handled gracefully, in particular when we try to do <code>pop, top</code> on an empty heap.
+    <li> 10 points if your code is well-indented, with a maximum 
+    of 80 characters per column. Each indentation is between 3 to 8 spaces. 
+    Absolutely no tab character occurs in the code.
+</ul>
+
+</div>
+
+   <hr>                                                                        
+                                                                                
+    <div id="footer">                                                           
+      <div class="container">                                                   
+        <p class="credit muted"> Copyright &copy; <a href="http://www.cse.buffalo.edu/%7Ehungngo">Hung Q. Ngo</a> 2014, Designed with <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> | Valid <a href="http://jigsaw.w3.org/css-validator/">CSS</a> &amp; <a href="http://validator.w3.org/">XHTML</a>
+      </div>                                                                    
+    </div>                                                                      
+                                                                                
+    <!-- Le javascript                                                          
+    ================================================== -->                      
+    <!-- Placed at the end of the document so the pages load faster -->         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"                                              
+    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </body>                                                                       
+</html>

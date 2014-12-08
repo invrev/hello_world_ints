@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>CSE 250: Data Structures in C++</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Hung Q. Ngo" />
+  <meta name="keywords" content="Hung Q. Ngo, Data Structure, C++" />
+  <meta name="description" content="Data Structures in C++" />
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/hungngo.css" rel="stylesheet">     
+  <link href="../css/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../css/prettify.js"></script>
+  </head>
+
+<body  onload="prettyPrint()">
+
+<!-- ************** Body **************** -->
+<div class="container">
+
+<h2>Assignment 5, Due at 11:59pm, Tue Oct 14</h2>
+
+<h3>Objectives</h3>
+<ul>
+ <li> Practice thinking about recursive and iterative solutions to the same
+ problem.
+ <li> "See" that in some cases iterative solutions are much easier to come up 
+ with than recursive solutions, and vice versa.
+</ul>
+
+<h3>Sample problems and sample solutions</h3>
+
+<h5>Sample problem 1</h5>
+
+<p>
+A string of characters is a <a href="http://en.wikipedia.org/wiki/Palindrome">palindrome</a> if it reads the same from left to right as from right to left. For example, the names "anna", "bob",and "otto" are palindromes. A former prime minister of Cambodia was "lon nol", which is a palindrome. Phrases such as "step on no pets" and "rats live on no evil star" are palindromes.
+
+<p>
+You are to write a function that takes an input string and returns <code>true</code> if the input is a palindrome, and <code>false</code> otherwise. You will write an iterative and a recursive version of the function, whose signatures are as follows. 
+You <strong>must</strong> use the signature (i.e. prototype) given. <strong>No helper function is accepted</strong>.
+
+<p>
+Note that by definition an empty string is a palindrome. So your function must return <code>true</code> if the input string is empty. Also, you can assume that all characters are in lower case.
+
+<pre class="prettyprint" id="Cpp">bool iterative_palindrome(const string& str) 
+{
+    // your code goes here
+}
+</pre>
+
+<p>
+For the recursive solution, given an input string <code>str</code> we will call the following function with 
+
+<p>
+<code>recursive_palindrome(str, 0, str.length())</code> 
+
+<p>
+In particular, note that <code>end</code> is one more than the index of the last character. (Recall the <code>size_t</code> issue with iterative binary search 2 in the lecture slides.)
+
+<pre class="prettyprint" id="Cpp">bool recursive_palindrome(const string& str, size_t start, size_t end) 
+{
+    // your code goes here
+}
+</pre>
+
+<h5>Sample solution 1</h5>
+
+The iterative solution
+<pre class="prettyprint" id="Cpp">
+// Would you agree that it's much cleaner than the recursive one?
+bool iterative_palindrome(const string& str) 
+{
+    for (size_t i=0; i&lt;str.length()/2; i++) {
+        if (str[i] != str[n-1-i]) return false;
+    }
+    return true;
+}
+</pre>
+
+The recursive solution
+<pre class="prettyprint" id="Cpp">
+// the initial call is recursive_palindrome(str, 0, str.length()) 
+bool recursive_palindrome(const string& str, size_t start, size_t end) 
+{
+    if (start &gt;= end) return true;
+    return (str[start] == str[end-1]) && 
+           recursive_palindrome(str, start+1, end-1);
+}
+</pre>
+
+<h5>Sample problem 2</h5>
+
+Given a non-negative integer <code>n</code>, write the iterative and recursive versions of a function that takes a non-negative integer <code>n</code> and returns a string which represents <code>n</code> in binary. For example,
+
+<ul>
+ <li> <code>n=0</code>, return <code>"0"</code>
+ <li> <code>n=1</code>, return <code>"1"</code>
+ <li> <code>n=2</code>, return <code>"10"</code>
+ <li> <code>n=18</code>, return <code>"10010"</code>
+</ul>
+
+You <strong>must</strong> use the signature (i.e. prototype) given. <strong>No helper function is accepted</strong>.
+
+<pre class="prettyprint" id="Cpp">
+// the iterative solution
+string iterative_binrep(size_t n) 
+{
+    // your code goes here
+}
+
+// the recursive solution
+string recursive_binrep(size_t n) 
+{
+    // your code goes here
+}
+</pre>
+
+<h5>Sample solution 2</h5>
+
+<pre class="prettyprint" id="Cpp">
+// the iterative solution
+string iterative_binrep(size_t n) {
+    string ret;
+    do {
+        ret.insert(0, (n%2 == 0? "0" : "1"));
+        n = n/2;
+    } while (n &gt; 0);
+    return ret;
+}
+
+// the recursive solution. Would you agree that it's much cleaner?
+string recursive_binrep(size_t n) {
+    if (n == 0) return "0";
+    if (n == 1) return "1";
+    return recursive_binrep(n/2) + (n%2 == 0? "0" : "1");
+}
+</pre>
+
+
+<h3>What to do? Solve the following problems</h3>
+
+<h5>Problem 1</h5>
+
+Write the iterative and recursive versions of a function that takes in a 
+stack of integers and returns the number of negative integers from the stack.
+You <strong>must</strong> use the signature (i.e. prototype) given. 
+<strong>No helper function is accepted</strong>.
+
+<pre class="prettyprint" id="Cpp">
+// the iterative solution
+size_t iterative_num_negatives(stack&lt;int> int_stack)
+{
+    // your code goes here
+}
+
+// the recursive solution, the initial call is 
+size_t recursive_num_negatives(stack&lt;int> int_stack)
+{
+    // your code goes here
+}
+</pre>
+
+<h5>Problem 2</h5>
+
+Write the iterative and recursive versions of a function that takes in two vectors <code>a</code> and <code>b</code>, both are <code>vector&lt;int></code>, and returns whether <code>a</code> is a <em>sub-vector</em> of <code>b</code>
+
+<code>a</code> is a sub-vector of <code>b</code> if we can find an exact copy of <code>a</code> in some contiguous block of elements of <code>b</code>. For example, <code>[1 -2 5 3]</code> is a sub-vector of <code>[10 -2 1 -2 5 3 4 6 8]</code>, but it is not a sub-vector of <code>[10 -2 1 -2 5 4 3 6 8]</code>.
+
+You <strong>must</strong> use the signature (i.e. prototype) given. <strong>No helper function is accepted</strong>.
+
+<pre class="prettyprint" id="Cpp">
+// the iterative solution
+bool iterative_sub_vector(vector&lt;int&gt;& a, vector&lt;int&gt; b)
+{
+    // your code goes here
+}
+
+/** 
+ * the recurive solution, you CAN NOT call erase NOR copy many elements of 
+ * b into a separate vector. The function prototyp is already a hint
+ * the initial call is recursive_sub_vector(a, b, 0)
+ */
+bool recursive_sub_vector(vector&lt;int&gt;& a, vector&lt;int> b, size_t k)
+{
+    // your code goes here
+}
+</pre>
+
+<h5>Problem 3</h5>
+
+In this problem, you are free to pick any type of solution (iterative or recursive) you want. You are to write a function called <code>sum_to_target</code> that takes a vector of integers <code>int_vec</code> and a target integer <code>target</code>. The function returns <code>true</code> if there is a subset of integers in <code>int_vec</code> that sums to <code>target</code>, and <code>false</code> otherwise. If <code>target == 0</code>, then the answer is always <code>true</code>, because the empty subset sums to <code>0</code>. If your solution is recursive, feel free to add extra parameters to your function to accomodate the recursion. (For example, <code>recursive_sub_vector</code> above has an extra parameter.) In that case, please indicate the initial call to get the recursion started.
+
+<h3>How to submit</h3>
+
+Please type <strong>all</strong> your functions in properly indented cpp; put them in the same text file, named <code>a5.cpp</code>. 
+
+Please only include those functions in the submission; You can (and should) 
+compile and test your functions, but when you submit please remove the extra 
+pieces of codes you use to test them. (For example, 
+<code>#include&lt;iostream></code> and <code>main()</code> should not be 
+included in the submission. We grade the submission by reading only the code 
+you put in the functions' bodies.
+
+Then,
+
+<pre>
+submit_cse250 a5.cpp
+</pre>
+
+Note that the above line only works if you logged in to your CSE account and 
+the file <code>a5.cpp</code> is there. All previous things can be done at 
+home, as long as you remember to upload the final <code>a5.cpp</code> file to 
+your CSE account and run the submit script from there.
+
+<h3>Grading</h3>
+
+<ul>
+    <li> <code>10 points</code> for properly indented codes. The indentation 
+    must be between <code>3</code> and <code>8</code> spaces. Every line must 
+    have at most <code>80</code> characters (including spaces). I am starting 
+    to impose coding standard from this assignment on. The above requirement 
+    is very typical (and is an extremely small subset of typical style guide) 
+    in industrial-strength codes. 
+    We will grade your submission by reading it, and improperly indented codes 
+    is impossible to read.
+ <li> <code>30 points</code> for each problem.
+</ul>
+
+</div>
+
+   <hr>                                                                        
+                                                                                
+    <div id="footer">                                                           
+      <div class="container">                                                   
+        <p class="credit muted"> Copyright &copy; <a href="http://www.cse.buffalo.edu/%7Ehungngo">Hung Q. Ngo</a> 2014, Designed with <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> | Valid <a href="http://jigsaw.w3.org/css-validator/">CSS</a> &amp; <a href="http://validator.w3.org/">XHTML</a>
+      </div>                                                                    
+    </div>                                                                      
+                                                                                
+    <!-- Le javascript                                                          
+    ================================================== -->                      
+    <!-- Placed at the end of the document so the pages load faster -->         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"                                              
+    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </body>                                                                       
+</html>

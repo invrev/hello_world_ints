@@ -1,0 +1,242 @@
+Add a closed interval
+Add credits
+Add list-based integers
+Build a BST from a sorted array
+Check if a board game is winnable
+Check if a decimal integer is a palindrome
+Check if rectangles intersect
+Clone a graph
+Compute a Gray code
+Compute a random subset of \{0,1,\dots,n-1\}
+Compute a salary threshold
+Compute a shortest path with fewest edges
+Compute all mnemonics for a phone number
+Compute all string decompositions
+Compute all valid IP addresses
+Compute an optimum assignment of tasks
+Compute buildings with a sunset view
+Compute enclosed regions
+Compute fair bonuses
+Compute parity
+Compute right siblings
+Compute rows in Pascal's Triangle
+Compute the view from above
+Compute the average of the top three scores
+Compute the binomial coefficients
+Compute the closest entries in three sorted arrays
+Compute the diameter of a tree
+Compute the exterior of a binary tree
+Compute the greatest common divisor
+Compute the integer square root
+Compute the intersection of two sorted arrays
+Compute the k closest stars
+Compute the k largest elements in a max-heap
+Compute the k-th node in an inorder traversal
+Compute the largest rectangle under the skyline
+Compute the LCA in a binary tree
+Compute the LCA in a BST
+Compute the LCA when nodes have parent pointers
+Compute the LCA, optimizing for close ancestors
+Compute the Levenshtein distance
+Compute the longest contiguous increasing subarray
+Compute the longest substring with matching parens
+Compute the max difference
+Compute the maximum of a sliding window
+Compute the maximum product of all but one entries
+Compute the maximum subarray sum in a circular array
+Compute the maximum water trapped by a pair of vertical lines
+Compute the median of a sorted circular linked list
+Compute the median of online data
+Compute the minimum number of multiplications to evaluate x^n
+Compute the next permutation
+Compute the probability of a Republican majority
+Compute the real square root
+Compute the smallest nonconstructible change
+Compute the spreadsheet column encoding
+Compute the successor
+Compute the union of intervals
+Compute x * y without multiply or add
+Compute x/y
+Compute x^y
+Convert a BST to a sorted doubly linked list
+Convert a sorted doubly linked list into a BST
+Convert base
+Convert from Roman to decimal
+Copy a postings list
+Count inversions
+Count the frequencies of characters in a sentence
+Count the number of score combinations
+Count the number of steps in a board game
+Count the number of ways to traverse a 2D array
+Decompose into palindromic strings
+Delete a key from an array
+Delete a node from a singly linked list
+Delete duplicates from a sorted array
+Determine the critical height
+Divide the spoils fairly
+Draw the skyline
+Enumerate all nonattacking placements of n-Queens
+Enumerate all primes to n
+Enumerate all subsets of size k
+Enumerate binary trees
+Enumerate numbers of the form a + b sqrt 2
+Enumerate palindromic decompositions
+Enumerate permutations
+Enumerate strings of balanced parens
+Enumerate the power set
+Evaluate RPN expressions
+Find a closest integer with the same weight
+Find a highest affinity pair
+Find a root to leaf path with specified sum
+Find an element that appears only once
+Find k elements closest to the median
+Find k-unbalanced nodes
+Find smallest subarray that sequentially covering all values
+Find the duplicate and missing elements
+Find the first key larger than k in a BST
+Find the first missing positive entry
+Find the first occurrence of a substring
+Find the first occurrence of k in a BST
+Find the k largest elements in a BST
+Find the k-th largest element---large n, small $k$
+Find the k-th largest element
+Find the length of a longest contained range
+Find the line through the most points
+Find the longest nondecreasing subsequence
+Find the longest subarray whose sum <= k
+Find the longest subarray with distinct entries
+Find the majority element
+Find the maximum 2D subarray
+Find the maximum weight path in a triangle
+Find the min and max simultaneously
+Find the missing IP address
+Find the nearest repeated entries in an array
+Find the shortest unique prefix
+Find the smallest subarray covering all values
+Find the two closest points
+Find unique elements
+Form a linked list from the leaves of a binary tree
+Generate nonuniform random numbers
+Generate uniform random numbers
+Identify positions attacked by rooks
+Identify the celebrity
+Implement a circular queue
+Implement a fast sorting algorithm for lists
+Implement a queue API using two stacks
+Implement a queue with max API
+Implement a schedule which minimizes waiting time
+Implement a stack with max API
+Implement a Sudoku solver
+Implement a variable-length sort
+Implement an inorder traversal with O(1) space
+Implement an ISBN cache
+Implement counting sort
+Implement cyclic right shift for singly linked lists
+Implement Elias gamma encoding
+Implement even-odd merge
+Implement Huffman coding
+Implement list pivoting
+Implement list zipping
+Implement locking in a binary tree
+Implement mergesort in-place
+Implement preorder and postorder traversals without recursion
+Implement regular expression matching
+Implement run-length encoding
+Implement stack and queue APIs using heaps
+Implement the UNIX \texttt{tail} command
+Increment a BigInteger
+Interconvert strings and integers
+Left-justify text
+Load balancing
+Making wired connections
+Measure with defective jugs
+Merge sorted files
+Merge two BSTs
+Merge two sorted lists
+Multiply two BigIntegers
+Normalize pathnames
+Pack for USPS priority mail
+Paint a Boolean matrix
+Partition into anagrams
+Permute the elements of an array
+Pick up coins for maximum gain
+Plan a fishing trip
+Print a 2D array in spiral order
+Print a binary tree in order of increasing depth
+Print the keys in a BST
+Reconstruct a binary tree from a preorder traversal with marker
+Reconstruct a binary tree from traversal data
+Reconstruct a BST from traversal data
+Remove duplicates from a sorted list
+Remove the k-th last element from a list
+Render a calendar
+Replace and remove
+Reverse a single sublist
+Reverse a singly linked list
+Reverse all the words in a sentence
+Reverse bits
+Reverse digits
+Reverse sublists k at a time
+Road network
+Rotate a 2D array
+Rotate an array
+Sample offline data
+Sample online data
+Search a cyclically sorted array
+Search a maze
+Search a postings list
+Search a sorted array for first occurrence of k
+Search a sorted array for the first element greater than~k
+Search a sorted array for \mbox{A[i]=i}
+Search a sorted array of unknown length
+Search for a pair-sum in an abs-sorted array
+Search for a sequence in a 2D array
+Search in a 2D sorted array
+Search in two sorted arrays
+Solve generalizations of max difference
+Sort a k-increasing-decreasing array
+Sort a list
+Sort a stack
+Sort an almost-sorted array
+Sum the leaves in a binary tree encoding integers
+Swap bits
+Synthesize an expression
+Team photo day---1
+Team photo day---2
+Test degrees of connectedness
+Test for cyclicity
+Test for overlapping lists---lists are cycle-free
+Test for overlapping lists---lists may have cycles
+Test for palindromic permutations
+Test if a binary tree is a min-first BST
+Test if a binary tree is an almost BST
+Test if a binary tree is balanced
+Test if a binary tree is symmetric
+Test if a binary tree satisfies the BST property
+Test if a tie is possible
+Test if an anonymous letter is constructible
+Test if arbitrage is possible
+Test if parens, brackets, and braces are matched
+Test if s is an interleaving of s_1 and $s_2$
+Test if three BST nodes are totally ordered
+Test if x is bigger than the k-th largest element
+Test palindromicity
+Test the Collatz conjecture
+Test whether a singly linked list is palindromic
+The 3-sum problem
+The Dutch national flag problem
+The gasup problem
+The heavy hitter problem
+The interval covering problem
+The knapsack problem
+The look-and-say problem
+The nearest restaurant problem
+The open doors problem
+The pretty printing problem
+The Sudoku checker problem
+The Towers of Hanoi problem
+The \textsf{bedbathandbeyond.com} problem
+Transform one string to another
+Trapping water
+Update a BST
+Write a string sinusoidally

@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>CSE 250: Data Structures in C++</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Hung Q. Ngo" />
+  <meta name="keywords" content="Hung Q. Ngo, Data Structure, C++" />
+  <meta name="description" content="Data Structures in C++" />
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/hungngo.css" rel="stylesheet">     
+  <link href="../css/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../css/prettify.js"></script>
+  </head>
+
+<body  onload="prettyPrint()">
+
+<!-- ************** Body **************** -->
+<div class="container">
+
+<h2>Assignment 6, Due at 11:59pm, Tue Oct 28</h2>
+
+<h3>Objectives</h3>
+<ul>
+ <li> Practice manipulating linked lists.
+ <li> Practice implementing a class (whose interface has already been designed).
+ <li> In the previous assignments, we have dealt quite extensively with the
+ most basic data structure: a vector. Vectors and arrays allow for constant-time
+ random access. (E.g., you can say <code>vec[10]</code> and get the answer in
+ constant time. This is due to the fact, illustrated in our 
+ <code>UBVector</code> implementation, that the internal storage of a vector
+ is a contiguous block of memory.) Lists and pointer-based trees do not allow
+ for random access like that. To access and modify the lists we often have
+ to manipulate the pointers and traverse the pointers to find elements or
+ rearrange elements in the lists. 
+ <li> The first main objective of this assignment is for you to practice 
+ manipulating singly linked lists. In "practice," you will occasionally have to 
+ do some of the tasks specified in this assignment.
+ <li> The second main objective of this assignment is for you to get really 
+ comfortable with pointer manipulation. I cannot emphasize enough the importance
+ of being able to deal with pointers in your future jobs.
+ <li> The third main objective of this assignment is for you to get used to
+ implementing a C++ class.
+</ul>
+
+<h3>What to do</h3>
+
+You are to write a C++ program that does the following. 
+
+<ol>
+ <li> It keeps reading user's inputs, line by line. Each input line the user
+ types is supposed to be in one of the following forms:
+
+<pre>
+new    listname [list of non-negative integers separated by space]
+print  listname
+remove listname [an int]
+merge  listname1 listname2
+sort   listname
+exit
+</pre>
+
+where 
+<ul>
+ <li> <code>exit</code> tells your program to quit 
+ <li> <code>listname</code> is an identifier (you can just think of it 
+ as a valid C++ variable name). For example, <code>a, _a34, counter</code> are 
+ all valid variable names.
+ <li> <code>[list of non-negative integers separated by space]</code> is ...  
+ a list of non-negative integers separated by spaces, such as 
+ <code>3 8 10 2 0</code>
+ <li> <code>[an int]</code> is any integer, such as <code>531</code>
+ <li> <code>new</code> tells your program to create a new linked list of
+ <code>Node</code>s of the following type
+
+<pre class="prettyprint" id="Cpp">
+struct Node 
+{
+    int   key;                                                                  
+    Node* next;                                                                 
+    Node(int k=0, Node* n=NULL) : key(k), next(n) {};                           
+};
+</pre>
+
+ the linked list constains a list of <code>Node</code>s whose keys are the 
+ integers provided in the input list, in the order given. You can then print 
+ out the list with the next command
+
+ <li> <code>print listname</code> prints the list held by the list
+ <code>listname</code>.
+
+ <li> <code>remove x</code> takes a list and remove from the list all nodes
+ whose key is equal to <code>x</code>. (<code>delete</code> those pointers!) 
+
+ <li> <code>merge l1 l2</code> merges two lists that are already sorted into
+ one, destroying <code>l2</code> and keep the result in <code>l1</code>. 
+ If the input lists are not already sorted then an exception is
+ thrown and the error is reported to the screen.
+
+ <li> <code>sort listname</code> sorts the linked list held by 
+ <code>listname</code>. You will have to implement the merge sort algorithm.
+ (See the <a href="http://cse250.wordpress.com/2014/10/26/basic-searching-and-sorting/">sorting lectures</a> for more information.) This time, however, you are 
+ sorting linked lists so you'll need to understand the key idea of merge sort
+ to adapt to the linked list case. 
+ 
+ <p> Unlike in the vector/array sorting case, here <strong>you must not modify 
+ any key</strong> in the nodes, in particular <strong>do not swap keys</strong>. 
+ Sorting is done by manipulating the pointers 
+ (<code>head</code> and <code>next</code> and so on). There are two reasons for 
+ this. As stated above, this is a pointer manipultion exercise -- a super 
+ important skill to master. Second, in practice there are cases where it is not 
+ a good idea to move the content of the nodes (say, they are on disks) which 
+ can be massive. Modifying the pointers are much cheaper oprations.
+
+ <li> <strong>The real task</strong>: 
+ I have written the program already, leaving a few functions blank.
+ Your task is to understand my code and implement the three functions 
+ <code>UBList.remove()</code>,
+ <code>UBList.merge()</code>,
+ <code>UBList.sort()</code>.
+
+ <strong>Please do make sure that you understand the code base completely!
+     In particular, you should understand what each of the data members and
+     function members (which have been implemented) does.</strong>
+
+ <li> First, to get a sense of what the program is supposed to do, please
+ download <a href="listmanip">its binary</a> named <code>listmanip</code>. 
+ The binary can run under <code>timberlake</code> as usual. You can get it by
+ typing
+<pre>
+wget http://www.cse.buffalo.edu/~hungngo/classes/2014/Fall/250/assignments/listmanip
+chmod 700 listmanip
+</pre>
+ 
+ Here is a sample run of <code>listmanip</code>:
+
+ <pre>
+[HQN@mymachine] $ listmanip
+UBList: practice manipulating linked lists
+&gt; new a =  1 6 3 5 8 1 2 8 5 3
+&gt; print a
+[10 NODES] : 1 6 3 5 8 1 2 8 5 3 
+&gt; new b = 2 6 2 6 2
+&gt; print b
+[5 NODES] : 2 6 2 6 2 
+&gt; remove a 5
+&gt; print a
+[8 NODES] : 1 6 3 8 1 2 8 3 
+&gt; sort a
+&gt; print a
+[8 NODES] : 1 1 2 3 3 6 8 8 
+&gt; sort b
+&gt; print b
+[5 NODES] : 2 2 2 6 6 
+&gt; merge a b
+&gt; print a
+[13 NODES] : 1 1 2 2 2 2 3 3 6 6 6 8 8 
+&gt; print b
+[0 NODES] : 
+&gt; exit
+</pre>
+
+ <p> To download the code base, click <a href="A6.tar">here</a>, or
+ from your timberlake account type
+
+ <pre>wget http://www.cse.buffalo.edu/~hungngo/classes/2014/Fall/250/assignments/A6.tar</pre>
+
+ It is a tarred file. You can untar it using
+
+ <pre>
+tar -xvf A6.tar
+</pre>
+
+ After those two commands, you'll see a directory named <code>A6</code>
+ which contains all source files, including a <code>Makefile</code>. 
+ You can already compile and run it! It does <code>new</code> and <code>print</code> already. Compile with <code>make</code>, and run it to see what's going on. 
+ <li> Finally, <strong>the only file you can modify is
+ <code>UBList.cpp</code></strong>. You are to supply the body of 
+ the functions that have <code>YOUR CODE GOES HERE</code> in the body.
+ What each function is supposed to do is described in the comments inside the
+ function's body in <code>UBList.cpp</code>.
+ <strong>Do not add any auxiliary functions</strong>.
+ <li> When you submit your assignment, you will only submit <strong>one</strong>
+ file: <code>UBList.cpp</code>. We will copy this file to a directory 
+ containing all other files and compile and grade. 
+ <strong>Don't</strong> modify any other files. This is to illustrate how you 
+work within a code base that someone else has written. 
+</ol>
+
+<h3>How to submit</h3>
+
+<pre>
+submit_cse250 UBList.cpp
+</pre>
+
+Note that the above line only works if you logged in to your CSE account and 
+the file is there. All previous things can be done at home, as long as 
+you remember to upload the final file to your CSE account and run 
+the submit script from there.
+
+<h3>Grading</h3>
+
+<ul>
+ <li> 0 point if your <code>UBList.cpp</code> does not compile with the other files intact.
+ <li> 5 points if your <code>UBList.cpp</code> does compile. In other words, if you don't do anything, just re-submit the file, you'll get 5 points.
+ <li> 10 points if your code is well-indented, with a maximum of 80 characters
+ per column. Each indentation is between 3 to 8 spaces. Absolutely 
+ <strong>no tab character</strong> occurs in the code.
+ <li> 30 points if <code>remove()</code> works. <strong>Remember</strong> to 
+ <code>delete</code> (pointers to) nodes that are removed.
+ <li> 30 points if <code>merge()</code> works. <strong>Do not</strong> modify/swap nodes' keys. Only pointer manipulation is allowed. 
+ <li> 25 points if <code>sort()</code> works, and it makes use of <code>merge()</code> as it implements the merge sort algorithm. <strong>Do not</strong> modify/swap nodes' keys. Only pointer manipulation is allowed.
+</ul>
+
+</div>
+
+   <hr>                                                                        
+                                                                                
+    <div id="footer">                                                           
+      <div class="container">                                                   
+        <p class="credit muted"> Copyright &copy; <a href="http://www.cse.buffalo.edu/%7Ehungngo">Hung Q. Ngo</a> 2014, Designed with <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> | Valid <a href="http://jigsaw.w3.org/css-validator/">CSS</a> &amp; <a href="http://validator.w3.org/">XHTML</a>
+      </div>                                                                    
+    </div>                                                                      
+                                                                                
+    <!-- Le javascript                                                          
+    ================================================== -->                      
+    <!-- Placed at the end of the document so the pages load faster -->         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"                                              
+    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </body>                                                                       
+</html>

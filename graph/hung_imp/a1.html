@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>CSE 250: Data Structures in C++</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Hung Q. Ngo" />
+  <meta name="keywords" content="Hung Q. Ngo, Data Structure, C++" />
+  <meta name="description" content="Data Structures in C++" />
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/hungngo.css" rel="stylesheet">     
+  <link href="../css/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../css/prettify.js"></script>
+  </head>
+
+<body  onload="prettyPrint()">
+
+<!-- ************** Body **************** -->
+<div class="container">
+
+<h2>Assignment 1, Due at 11:59pm, Sunday Sep 07</h2>
+
+<h3>Objectives</h3>
+<ul>
+ <li> Write your first non-trivial C++ program, making use of basic control
+ structures.
+ <li> Familiarize yourself with elementary processing of strings and files in C++.
+ <li> Think about program design: "design, then code." 
+      It is very important that you think about the design of your program 
+      before sitting down and coding.   
+</ul>
+
+<h3>What to do</h3>
+
+You are to write a C++ program that does the following. 
+
+<ol>
+ <li> It keeps reading user's inputs, line by line. Each input line the user
+ types is supposed to be in one of the following three forms:
+
+ <pre>
+numcols filename
+numrows filename
+exit
+</pre>
+
+where 
+<ul>
+ <li> <code>filename</code> is the name of a text file. The file contains a set of lines; each line is a list of words separated by spaces or tabs. Each word is a series of (ASCII) characters with no tab nor space in between them. For example, the content of the file <code>test.txt</code> might look like this
+ <pre>
+ this is    a file
+ that has seven columns and four rows. 
+ Note that rows might have 
+ different numbers of columns.</pre>
+ In this file, the first row has 4 words, second has 7, third has 5, and fourth has 4.
+ <li> <code>numcols</code> stands for "number of columns" of <code>filename</code>, which is the maximum number of words that a row has.
+ <li> <code>numrows</code> stands for "number of rows", which is the number of lines in the file. 
+ <li> <code>exit</code> tells your program to quit 
+</ul>
+
+ <li> If the user types <code>exit</code>, then your program quits.
+ <li> The other two commands <code>numrows</code> and <code>numcols</code> reports the number of columns and the number of rows the file has.
+
+ <li> For example, if the file <code>test.txt</code> has the content as shown above, then the output of the program looks as follows.
+<pre>
+&gt; numrows test.txt
+4
+&gt; numcols test.txt
+7
+&gt; numcols anothertest.txt
+6
+&gt; exit
+</pre>
+Here, <code>anothertest.txt</code> is some other file that has 6 columns.
+Your program has to keep running until the user types <code>exit</code>.
+</ol>
+
+<h3>My implementation</h3>
+
+I have written <a href="txtparser">a program named <code>txtparser</code></a> following the above specification and compiled it under <code>timberlake</code>. You can download and run it (in <code>timberlake</code>) to see how it is supposed to work. You can download it by clicking on the link above (and upload the file to <code>timeberlake</code>), or you can log on to your CSE account on <code>timberlake</code>, then type
+
+<pre>
+wget http://www.cse.buffalo.edu/~hungngo/classes/2014/Fall/250/assignments/txtparser
+</pre>
+
+Remember to make it an executable file before trying to run it:
+
+<pre>
+chmod 700 txtparser
+</pre>
+
+You can also get two test files using the same method:
+
+<pre>
+wget http://www.cse.buffalo.edu/~hungngo/classes/2014/Fall/250/assignments/test.txt
+wget http://www.cse.buffalo.edu/~hungngo/classes/2014/Fall/250/assignments/anothertest.txt
+</pre>
+
+<h3>How to submit</h3>
+
+Put all files in a directory named <code>A1</code>, then follow
+the steps similar to assignment 0. You <strong>do</strong> need to construct a
+<code>Makefile</code> for it. If your <code>cpp</code> source file is named <code>txtparser.cpp</code>, then your <code>Makefile</code> might have the following content
+
+<pre>
+all:
+    g++ txtparser.cpp -o txtparser
+
+clean:
+    rm -f txtparser
+</pre>
+
+To submit, perform similar steps as in assignment 0.
+
+<pre>
+cd ..
+tar -cvf A1.tar A1/*
+submit_cse250 A1.tar
+</pre>
+
+Note that the last line only works if you logged in to your CSE account and 
+the tar file is there. All previous things can be done at home, as long as 
+you remember to upload the final tar file to your CSE account and run 
+the submit script from there.
+
+<h3>Grading</h3>
+
+<ul>
+    <li> 10 points if the <code>exit</code> command works. Your program only quits when <code>exit</code> is typed.
+    <li> 40 points if the <code>numcols</code> command works, outputting the correct number of columns of the input file.
+    <li> 40 points if the <code>numrows</code> command works, outputting the correct number of rows of the input file.
+    <li> 10 points if your program can handle simple input errors from the users,
+ such as when the user types <code>numco file.txt</code> (unknown command)
+ or when <code>file.txt</code> does not exist. Please run my implementation <code>txtparser</code> to see the expected behavior.
+</ul>
+
+<h3>Supporting materials</h3>                                                   
+<p></p>                                                                         
+                                                                                
+Read Chapter 1 of the textbook if you needed to. Read the <a href="http://cse250.wordpress.com/2014/08/30/getting-started/">Getting started in C++</a> lecture note. The "reverse characters, reverse words" example already showed you how to get input lines from the user. The following snippet of code shows you how to read a file, one line at a time. Overall, you have all of the tools available to write this program.
+                                                                                
+<pre class="prettyprint" id="Cpp">                                              
+#include &lt;iostream&gt;                                                       
+#include &lt;fstream&gt;                                                        
+using namespace std;                                                            
+                                                                                
+int main() 
+{
+    string fname, line;                                                         
+    ifstream ifs; // input file stream                                          
+    int i;                                                                      
+    cout &lt;&lt; "---- Enter a file name : ";                                        
+    while (getline(cin, fname)) { // Ctrl-Z/D to quit!                          
+        // tries to open the file whose name is in string fname                 
+        ifs.open(fname.c_str());                                                
+        if (ifs.fail()) {                                                       
+            cerr &lt;&lt; "ERROR: Failed to open file " &lt;&lt; fname &lt;&lt; endl;   
+            ifs.clear();                                                        
+        } else {                                                                
+            i = 0;                                                              
+            while (getline(ifs, line))                                          
+                cout &lt;&lt; "Line " &lt;&lt; i++ &lt;&lt; " : " &lt;&lt; line &lt;&lt; endl;                
+            ifs.close(); // always remember to close it                         
+        }                                                                       
+        cout &lt;&lt; "---- Enter another file name : ";                              
+    }                                                                           
+    return 0;                                                                   
+}                                                                               
+</pre> 
+
+</div>
+
+   <hr>                                                                        
+                                                                                
+    <div id="footer">                                                           
+      <div class="container">                                                   
+        <p class="credit muted"> Copyright &copy; <a href="http://www.cse.buffalo.edu/%7Ehungngo">Hung Q. Ngo</a> 2014, Designed with <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> | Valid <a href="http://jigsaw.w3.org/css-validator/">CSS</a> &amp; <a href="http://validator.w3.org/">XHTML</a>
+      </div>                                                                    
+    </div>                                                                      
+                                                                                
+    <!-- Le javascript                                                          
+    ================================================== -->                      
+    <!-- Placed at the end of the document so the pages load faster -->         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"                                              
+    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </body>                                                                       
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>CSE 250: Data Structures in C++</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Hung Q. Ngo" />
+  <meta name="keywords" content="Hung Q. Ngo, Data Structure, C++" />
+  <meta name="description" content="Data Structures in C++" />
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/hungngo.css" rel="stylesheet">     
+  <link href="../css/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../css/prettify.js"></script>
+  </head>
+
+<body  onload="prettyPrint()">
+
+<!-- ************** Body **************** -->
+<div class="container">
+
+<h2>Assignment 9, Due at 11:59pm, Friday Dec 05. (Absolute deadline!)</h2>
+
+<h3>Objectives</h3>
+<ul>
+ <li> Implement a Splay Tree's function.
+ <li> This is a chance to delve deeper into implementing a "real" data 
+structure.
+ <li> Getting more comfortable with pointers.
+</ul>
+
+<h3>What to do</h3>
+
+You are to write a C++ program that does the following. 
+
+<ol>
+ <li> It keeps reading user's inputs, line by line. Each input line the user
+ types is supposed to be in one of the following forms:
+
+<pre>
+newtree
+insert [list of integer keys]
+remove [key]
+find [key]
+insert [key]
+print
+exit
+</pre>
+
+where 
+<ul>
+ <li> <code>exit</code> tells your program to quit 
+ <li> <code>newtree</code> creates a new <strong>Splay Tree</strong> and clear 
+ the old tree.
+ <li> <code>[key]</code> is any integer such as <code>5</code> or <code>-3</code>
+ <li> <code>[list of integer keys]</code> is a list of integers separated by spaces, such as <code>5 -3 4 1 20</code>.
+ <li> <code>insert</code> inserts the list of keys (integers) into a 
+ <strong>Splay tree</strong>. If the key already exists in the tree then it is
+ not inserted.
+ <li> <code>remove</code> removes a node with the key from the Splay tree. 
+ If the key does not exist in the tree then we report so.
+ <li> <code>find</code> returns whether the key exists in the tree
+ <li> <code>print</code> prints the tree in pretty format
+</ul>
+
+<li> I have written most of the above program, leaving out two functions:
+<code>splay()</code> and <code>remove()</code>. You can download the source 
+codes by typing (from your <code>timberlake</code> account):
+<pre>
+wget http://www.cse.buffalo.edu/~hungngo/classes/2014/Fall/250/assignments/A9.tar.gz
+gunzip A9.tar.gz
+tar -xvf A9.tar
+cd A9
+make
+</pre>
+
+An executable named <code>splaydriver</code> will be produced. 
+
+I've already implemented the assignment. You can download the binary and run it
+under <code>timberlake</code>
+
+<pre>
+wget http://www.cse.buffalo.edu/~hungngo/classes/2014/Fall/250/assignments/hqn-splaydriver
+chmod 700 hqn-splaydriver
+</pre>
+
+Here is a sample run of <code>splaydriver</code>:
+
+<pre>
+$ hqn-splaydriver
+UB Splay Tree Driver. Version 0.7
+ hqn
+ Please report bugs to hungngo@buffalo.edu
+
+&gt; insert 50 40 30 20 10
+50 just inserted
+40 just inserted
+30 just inserted
+20 just inserted
+10 just inserted
+&gt; print
+  [10]
+ /    \
+x    [20]
+    /    \
+   x    [30]
+       /    \
+      x    [40]
+          /    \
+         x    [50]
+&gt; find 50
+50 FOUND
+&gt; print
+         _[50]_
+        /      \
+    _[20]_      x
+   /      \
+[10]     [40]
+        /    \
+     [30]     x
+&gt; find 45
+45 NOT FOUND
+&gt; print
+        [40]_
+       /     \
+    [20]    [50]
+   /    \
+[10]   [30]
+&gt; insert 32
+32 just inserted
+&gt; print
+            _[32]_
+           /      \
+        [30]     [40]
+       /    \   /    \
+    [20]     x x    [50]
+   /    \
+[10]     x
+&gt; insert 25
+25 just inserted
+&gt; print
+        __[25]__
+       /        \
+    [20]       [32]
+   /    \     /    \
+[10]     x [30]   [40]
+                 /    \
+                x    [50]
+&gt; remove 25
+25 removed!
+&gt; print
+            _[32]_
+           /      \
+        [30]     [40]
+       /    \   /    \
+    [20]     x x    [50]
+   /    \
+[10]     x
+&gt; remove 31
+** ERROR **
+Key 31 NOT removed
+
+&gt; print
+        _[30]_
+       /      \
+    [20]     [32]
+   /    \   /    \
+[10]     x x    [40]
+               /    \
+              x    [50]
+&gt; remove 32
+32 removed!
+&gt; print
+        _[30]_
+       /      \
+    [20]     [40]
+   /    \   /    \
+[10]     x x    [50]
+&gt; remove 20
+20 removed!
+&gt; print
+    [30]
+   /    \
+[10]   [40]
+      /    \
+     x    [50]
+&gt; remove 50
+50 removed!
+&gt; print
+        [40]
+       /    \
+    [30]     x
+   /    \
+[10]     x
+&gt; remove 40
+40 removed!
+&gt; print
+    [30]
+   /    \
+[10]     x
+&gt; remove 10
+10 removed!
+&gt; print
+[30]
+&gt; remove 30
+30 removed!
+&gt; print
+&gt; exit
+</pre>
+
+<li>
+ Finally, <strong>the only file you can modify is
+ <code>SplayTree.cpp</code></strong>. You are to supply the body of 
+ the two functions that have <code>TODO: TBD</code> in the body. I strongly 
+ suggest you read the rest of the code base carefully before starting.
+ In particular, make sure you understand what <code>leftRotate()</code> and
+ <code>rightRotate()</code> do. Do not modify any other functions' bodies.
+ Do not add any more data members nor function members.
+
+ <li> When you submit your assignment, you will only submit <strong>one</strong>
+ file: <code>SplayTree.cpp</code>. We will copy this file to a directory 
+ containing all other files and compile and grade. 
+ <strong>Don't</strong> modify any other files. 
+</ol>
+
+<h3>How to submit</h3>
+
+<pre>
+submit_cse250 SplayTree.cpp
+</pre>
+
+Note that the above line only works if you logged in to your CSE account and 
+the file is there. All previous things can be done at home, as long as 
+you remember to upload the final file to your CSE account and run 
+the submit script from there.
+
+<h3>Grading</h3>
+
+<ul>
+ <li> 0 point if your <code>SplayTree.cpp</code> does not compile with the 
+ other files intact.
+ <li> 10 points if your <code>SplayTree.cpp</code> file does compile. In other 
+ words, if you don't do anything, just re-submit the file, you'll get 10 points.
+ <li> 30 points if <code>remove()</code> works correctly (with or without splaying).
+<strong>Remember</strong> to <code>delete</code> the pointer to the node that's removed, else you'll get a memory leak.
+ <li> 30 points if <code>splay()</code> works correctly. Since <code>insert</code> and <code>find</code> calls splay, we can test if your splay function works correctly by looking at the tree printed after <code>insert</code> or <code>find</code>.
+ <li> 30 points if <code>remove()</code> works correctly with splaying. In particular, the correct node is splayed up to the root after a removal. And, if we try to remove a node that is not found, then the node right before we hit the <code>NULL</code> pointer is splayed. (Read the code base!) Please run my implementation to see how the tree is supposed to look like after a removal.
+</ul>
+
+</div>
+
+   <hr>                                                                        
+                                                                                
+    <div id="footer">                                                           
+      <div class="container">                                                   
+        <p class="credit muted"> Copyright &copy; <a href="http://www.cse.buffalo.edu/%7Ehungngo">Hung Q. Ngo</a> 2014, Designed with <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> | Valid <a href="http://jigsaw.w3.org/css-validator/">CSS</a> &amp; <a href="http://validator.w3.org/">XHTML</a>
+      </div>                                                                    
+    </div>                                                                      
+                                                                                
+    <!-- Le javascript                                                          
+    ================================================== -->                      
+    <!-- Placed at the end of the document so the pages load faster -->         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"                                              
+    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </body>                                                                       
+</html>

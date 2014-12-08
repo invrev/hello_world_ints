@@ -1,0 +1,37 @@
+//BST 
+//Does a binary tree satisfy the BST property?  
+//Successor in a BST 
+//Updating a BST (*)
+//Search a BST for first occurrence of k
+//Search BST  for the first key larger than k    
+//Min-first  BST 
+//Building a BST froma sortedarray
+//Build a BST from a sorted linked list (*)    
+//Convert a BST to sorted doubly linked list (*)  
+//Merge two BSTs 
+//Find the k largest elements in a BST 
+//Traversal orders in a BST
+//Lowest common ancestor in a BST 
+//Descendant and ancestor
+//Gaussian primes (*) 
+//View from above(*)
+//Nearest restaurant 
+//Adding credits 
+//Counting the number of entries in an interval 
+//Querying server logs (*) 
+//---------Binary tree ------------------
+//Balanced binary trees 
+//k-balanced nodes  
+//Symmetric binary tree  
+//Locking in a binary tree  
+//Inorder traversal with O(1) space (*)  
+//Determining the k-th node in an inorder traversal          
+//Reconstructing a binary tree from traversal data           
+//Reconstructing a binary tree from a preorder traversal with marker 
+//Convert a binary tree to a circular doubly linked list (*)      
+//Form a linked list from the leaves of a binary tree          
+//The exterior of a binary tree (*) 
+//Lowest commonancestor in a binary tree               
+//Lowest common ancestor in a binary tree, with parent pointer   
+//Lowest common ancestor in a binary tree, close ancestor 
+//Shortest unique prefix(*)

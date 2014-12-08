@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>CSE 250: Data Structures in C++</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Hung Q. Ngo" />
+  <meta name="keywords" content="Hung Q. Ngo, Data Structure, C++" />
+  <meta name="description" content="Data Structures in C++" />
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/hungngo.css" rel="stylesheet">     
+  <link href="../css/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../css/prettify.js"></script>
+  </head>
+
+<body  onload="prettyPrint()">
+
+<!-- ************** Body **************** -->
+<div class="container">
+
+<h2>Assignment 3, Due at 11:59pm, Tuesday Sep 23</h2>
+
+<h3>Objectives</h3>
+<ul>
+ <li> Practice using <code>stack</code> to solve a common problem in parsing.
+ And perhaps make use of a <code>map</code> too.
+ <li> Practice using a <code>Lexer</code> class that I provided
+ <li> Learn a very rough idea of how HTML parsing and rendering might be done by
+ web browsers.
+ <li> Learn how to use many more built-in data structures in C++: <code>map, 
+ vector, stack, set</code>. 
+ <li> Learn how to work within the constraints of a code-base which is already
+ given to you. (In the wild, programmers rarely write codes from scratch: we
+ improve, modify, maintain a code-base that other people have written.)
+</ul>
+
+<h3>The 250HTML markup language</h3>
+
+Recall that in HTML we can change text attributes by surrounding the text with a pair of tags, e.g.
+
+<pre>
+&lt;b&gt;<strong>This is bold</strong>&lt;/b&gt;, &lt;i&gt;<i>this is italic&lt;/i&gt;</i>, 
+&lt;b&gt;<b>bold again &lt;i&gt;<i>and italic at the same time&lt;/i&gt;</i>&lt;/b&gt;</b>, 
+and &lt;u&gt;<u>underlined</u>&lt;/u&gt;, and back to normal.
+</pre>
+
+Of course, not all HTML files are correctly tagged. For example, the following is not tagged correctly
+
+<pre>
+&lt;b&gt;Bold text&lt;i&gt; and italic&lt;/b&gt;
+</pre>
+
+The World Wide Web Consortium (W3C) has <a href="http://validator.w3.org/">a service</a> allowing us to validate any HTML file, confirming whether the file is well-formed. In this assignment, we will make up our own HTML-like language, and implement a "validator" for the language. Also, we will write a function that renders (displays) a text string (or expression) marked up in our language correctly.
+
+<p></p>
+Let's call our language "250HTML". The language accepts the following tags:
+
+<ul>
+ <li> Foreground color tags: 
+ <code>
+ &lt;red&gt;,
+ &lt;green&gt;,
+ &lt;yellow&gt;
+ &lt;blue&gt;
+ &lt;magenta&gt;
+ &lt;cyan&gt;</code>, and their corresponding closing tags
+ <code>
+ &lt;/red&gt;,
+ &lt;/green&gt;,
+ &lt;/yellow&gt;
+ &lt;/blue&gt;
+ &lt;/magenta&gt;
+ &lt;/cyan&gt;</code>.
+ <li> Three more text attribute tags and their closing counterparts
+ <code>
+ &lt;dim&gt;,
+ &lt;underline&gt;,
+ &lt;bright&gt;,
+ &lt;/dim&gt;,
+ &lt;/underline&gt;,
+ &lt;/bright&gt;
+ </code>
+</ul>
+
+The tags correspond to a subset of the text attributes and colors that
+we can easily set using terminal control codes I discussed already.
+Valid input expressions in 250HTML look as follows.
+
+<pre>
+&lt;red&gt;Red &lt;dim&gt;dim and red&lt;/dim&gt; back to red&lt;/red&gt;
+    
+&lt;yellow&gt;Yellow &lt;underline&gt;underlined yellow &lt;dim&gt;dim&lt;/dim&gt; underlined yellow&lt;/underline&gt; and &lt;cyan&gt;cyan&lt;/cyan&gt; and yellow again&lt;/yellow&gt;
+</pre>
+
+An invalid 250HTML expression consists of the following type of errors:
+<ul>
+    <li> <code>INVALID TOKEN</code>: Tags are not formatted correctly, such as a tag with <code>&lt;</code> but no closing <code>&gt;</code> (whether or not the tag is valid)
+    <li> <code>UNKNOWN TAG</code>: An unknown tag is included, such as <code>&lt;some tag&gt;</code>
+    <li> <code>EXPRESSION NOT WELL-FORMED</code>: 
+      <ul>
+           <li> Improperly nested tag pairs, such as in the following line
+ 
+<pre>
+&lt;blue&gt;Blue &lt;underline&gt;underlined blue &lt;dim&gt;dim&lt;/dim&gt; underlined blue&lt;/blue&gt; &lt;/underline&gt;
+</pre>
+           <li> An open tag with no matching close tag or vice versa.
+      </ul>
+      We verify whether the expression is well-formed using a <code>stack</code> as I discuss in class.
+</ul>
+
+<h3>What to do</h3>
+
+You are to write a C++ program that does the following. 
+
+<ol>
+ <li> It keeps reading user's inputs, line by line. Each input line the user
+ types is supposed to be in one of the following three forms:
+
+ <pre>
+validate [250HTML expression]
+display [250HTML expression]
+exit
+</pre>
+
+For example, the following are good commands:
+
+ <pre>&gt; validate &lt;red&gt;This is red &lt;blue&gt;and this is blue&lt;/blue&gt; and back to red&lt;/red&gt;
+&gt; display &lt;red>print this out <dim>in dimmed red</dim> and red&lt;/red></pre>
+
+In the above commands, 
+
+ <pre>&lt;red&gt;This is red &lt;blue&gt;and this is blue&lt;/blue&gt; and back to red&lt;/red&gt;</pre>
+ and
+ <pre>
+display &lt;red>print this out <dim>in dimmed red</dim> and red&lt;/red></pre>
+are 250HTML expressions.
+
+
+ <li> If the user types <code>exit</code>, then your program just quits.
+
+ <li> The <code>validate</code> command reports whether the expression 
+ is well-formed according to our language 250HTML described above.
+
+ <li> The <code>display</code> command prints the expression 
+ where the text attributes (foreground color and 3 other attributes) are
+ displayed correctly (if the expression is well-formed). All tags are stripped off when
+ displaying the expression, of course. If the expression is not well-formed, 
+ then an error message is reported. If two foreground color tag pairs are 
+ nested inside one another, then the inner text has the color specified by 
+ the inner tag pair. For example, 
+
+ <pre>&lt;red&gt;This is red &lt;blue&gt;and this is blue&lt;/blue&gt; and back to red&lt;/red&gt;</pre>
+
+ In general, if there is a conflict the inner-most tag pair has the highest
+ priority.
+</ol>
+
+<p>
+The program above might seem to be a daunting task, but I have already written 
+a skeleton of the program for you. You can download the source files with
+
+<pre>
+wget http://www.cse.buffalo.edu/~hungngo/classes/2014/Fall/250/assignments/A3.tar
+tar -xvf A3.tar
+</pre>
+
+Please read <strong>all</strong> the code in the code base, but you can only modify one file: <code>cmd.cpp</code> to implement the two functions that were left empty there. You can compile the program by typing <code>make</code>. The <code>Makefile</code> is already written for you.
+
+<ul>
+ <li><code>Makefile</code>: typing <code>make</code> produces an executable called
+ <code>browser</code> that you can run.
+ <li><code>Lexer.h, Lexer.cpp</code>: interface and implementation of a
+ <code>Lexer</code> class that allows for tokenizing a text string into tokens of
+ various types: <code>TAG</code>, <code>IDENT</code>, <code>BLANK</code>,
+ <code>ERRTOK</code>, or <code>ENDTOK</code>.
+ The <code>TAG</code> token represents a 250HTML tag. 
+ <li><code>error_handling.h, error_handling.cpp</code>: a few error reporting 
+ routines.
+ <li><code>term_control.h, term_control.cpp</code>: terminal control routines.
+ <li><code>browser.cpp</code>: contains the <code>main()</code> function.
+ <li><code>cmd.h</code>: contains the interface to the two main commands.
+ <li><b>You must not modify any of the above files</b>
+ <li><code>cmd.cpp</code>: this is the only file you can modify to
+ write your program. You are going to implement 2 functions
+ <code>display()</code> and <code>validate()</code>, which
+ implement the <code>display</code> and <code>validate</code> commands,
+ respectively. Feel free to add more functions, types, variables, etc. 
+ into <code>cmd.cpp</code> if necessary.
+ <li> There are also a few <code>.html</code> file marked up with our language
+ for you to test, inside the <code>TESTS</code> sub-directory.
+</ul>
+
+</ul>
+
+<h3>Explanation and my implementation</h3>
+<p></p>
+
+<ul>
+<li> You should think about using <code>map</code> somewhere, beyond the command map already implemented.
+<li> I will explain <code>Lexer</code> and how to use it in class.
+<li> I will also explain how to use the <code>stack</code> data structure in the context of this problem.
+<li> I have written <a href="hqn-browser">a program</a> following the above 
+specification and compiled it under <code>timberlake</code>. You can
+download and run it (in <code>timberlake</code>) to see how it is supposed 
+to work. Remember to make it an executable file before trying to run it:
+
+<pre>
+wget http://www.cse.buffalo.edu/~hungngo/classes/2014/Fall/250/assignments/hqn-browser
+chmod 700 hqn-browser
+</pre>
+
+</ul>
+
+<h3>How to submit</h3>
+
+Submit <strong>only</strong> the <code>cmd.cpp</code> file. We will put your submission into a directory that has all other files in the codebase and compile using <code>make</code>
+
+<pre>
+submit_cse250 cmd.cpp
+</pre>
+
+Note again that the submission only works if you logged in to your CSE account and the <code>cpp</code> file is there. All previous things can be done at home, as long as you remember to upload the final file to your CSE account and run the submit script from there.
+
+<h3>Grading (100 points total)</h3>
+<p></p>
+
+As it was with the first two assignments, this assignment is to be done alone.
+
+<ul>
+    <li> <code>0 points</code> if the program does not compile (using <code>make</code>).
+    <li> <code>5 points</code> if the <code>exit</code> command works, i.e. if you don't do anything, just resubmit <code>cmd.cpp</code> you'll get 5 points.
+    <li> <code>65 points</code> if the <code>validate</code> command works. It must be able to report error messages for the three types of syntax errors specified
+ above. Please run my program to see the error messages. Please output the 
+ exact same messages for automatic grading.
+ <li> <code>30 points</code> if the <code>display</code> command works. 
+</ul>
+
+<h3>Supporting materials</h3>
+<p></p>
+
+The crucial piece of knowledge is the algorithm for recognizing Well-Formed
+Expressions based on stacks. I will discuss that and C++'s <code>stack</code>
+in class.
+
+Read the textbook, the chapter on stacks if you have to. 
+Read the <a href="http://cse250.wordpress.com/2014/09/06/terminal-control-enumerations-headers-separate-compilation-makefile/">Terminal control</a> post on the blog.
+The following snippet of code is probably helpful too.
+You will need <code>Lexer.h</code> and <code>Lexer.cpp</code> in the same 
+directory as the following file to test it.
+
+<pre class="prettyprint" id="Cpp">
+// lexerDriver.cpp
+#include &lt;iostream&gt;
+#include "Lexer.h"
+
+using namespace std; // BAD PRACTICE
+
+int main() 
+{
+    string line;
+    int i;
+
+    Token tok; 
+    Lexer lexer;
+    while (getline(cin, line)) // Ctrl-Z/D to quit!
+    { 
+        cout << "Enter an expression to tokenize: \n> ";
+        lexer.set_input(line);
+        while (lexer.has_more_token()) {
+            tok = lexer.next_token();
+            switch (tok.type) {
+                case TAG:
+                    if (tok.value[0] != '/') 
+                        cout << "OPEN TAG: " << tok.value << endl;
+                    else
+                        cout << "CLOSE TAG: " << tok.value.substr(1) << endl;
+                    break;
+                case IDENT:
+                    cout << "IDENT: " << tok.value << endl;
+                    break;
+                case BLANK:
+                    cout << "BLANK: " << tok.value << endl;
+                    break;
+                case ERRTOK:
+                    cout << "Syntax error on this line\n";
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    return 0;
+}
+</pre>
+
+
+</div>
+
+   <hr>                                                                        
+                                                                                
+    <div id="footer">                                                           
+      <div class="container">                                                   
+        <p class="credit muted"> Copyright &copy; <a href="http://www.cse.buffalo.edu/%7Ehungngo">Hung Q. Ngo</a> 2014, Designed with <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> | Valid <a href="http://jigsaw.w3.org/css-validator/">CSS</a> &amp; <a href="http://validator.w3.org/">XHTML</a>
+      </div>                                                                    
+    </div>                                                                      
+                                                                                
+    <!-- Le javascript                                                          
+    ================================================== -->                      
+    <!-- Placed at the end of the document so the pages load faster -->         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"                                              
+    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </body>                                                                       
+</html>

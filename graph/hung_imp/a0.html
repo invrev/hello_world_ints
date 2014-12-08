@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>CSE 250: Data Structures in C++</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Hung Q. Ngo" />
+  <meta name="keywords" content="Hung Q. Ngo, Data Structure, C++" />
+  <meta name="description" content="Data Structures in C++" />
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/hungngo.css" rel="stylesheet">     
+  <link href="../css/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../css/prettify.js"></script>
+  </head>
+
+<body  onload="prettyPrint()">
+
+<!-- ************** Body **************** -->
+<div class="container">
+
+<h2>Assignment 0, Due at 11:59pm, Sunday Aug 31</h2>
+
+<h3>Objectives</h3>
+<p></p>
+<ul>
+ <li>Edit and compile your first (?) C++ program.
+ <li>Get used to the submit system.
+ <li>Report on what you did the first week in terms of getting a hold of
+ <code>g++</code> and a text editor on your home/laptop computer.
+ <li>Try a simple <code>Makefile</code>
+ <li>Get free points as a gift from me!
+</ul>
+
+<h3>What to do</h3>
+<p></p>
+
+Please perform the following tasks.
+
+<ol>
+ <li> In (a subdirectory) of your home directory of your CSE account,
+ create a sub-directory called <code>A0</code> by typing
+
+<pre>
+mkdir A0
+cd A0
+</pre>
+
+ <li> Create three files in that sub-directory named <code>report.cpp</code>,
+ <code>Makefile</code>, and <code>README</code>. File names are case sensitive! 
+ It is recommended that you use either
+ <code>emacs/xemacs</code> or <code>vi/vim</code> to edit those files.
+ <code>nano</code> would be OK too if you are not yet comfortable with
+ <code>vi/emacs</code>. You can also edit the files using your favorite editor
+ (<code>Eclipse</code>, <code>Nodepad++</code>, <code>sublime text</code>, etc.)
+ from your home/laptop OS and upload them to your CSE account. 
+ There's no way I know how you did it.
+ <li> Type the following piece of code to <code>report.cpp</code>
+ (please do not cut-and-paste, though I wouldn't know if you cut-and-pasted or
+ typed, I'd recommend typing to get a sense of the editor, the C++ syntax, and
+ indentation, ...)
+
+<pre  class="prettyprint" id="Cpp">
+// report.cpp
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    string my_name = "David Blaine"; // edit this
+    string my_text_editor = "emacs"; // edit this
+    string my_home_os = "Windows";   // edit this
+    bool i_worked = true;            // set to false if you didn't do work
+    
+    cout << "My name is " << my_name << endl;
+
+    if (i_worked) {
+        cout << "I was able to install and test g++ and "
+             << "the text editor " << my_text_editor << '\n'
+             << "in my home computer/laptop, which runs "
+             << my_home_os << endl;
+    } else {
+        cout << "I wasn't able to install and test g++ and/or a text "
+             << "editor because ... " // give a lame reason here
+             << endl;
+    }
+    return 0;
+}
+</pre>
+
+You must modify the program so that it reports things about you.
+Now, to compile the above program, you can do
+<code>g++ report.cpp</code>
+and run it with <code>a.out</code>. 
+However, I'd like you to try an extremely
+simple <code>Makefile</code> too.
+
+<li>Create a file named <code>Makefile</code> in the same directory whose content consists of the following lines:
+
+<pre  class="prettyprint">
+all:
+	g++ report.cpp
+
+clean:
+    rm -f a.out
+</pre>
+For the <code>Makefile</code> to work, it is crucial that there is exactly
+one tab before <code>g++</code> on the second line, and there is exactly one tab before <code>rm</code> on the 5th line. (The 3rd line is empty.)
+
+Then, when you type <code>make</code> at the command line you'll get the same
+effect as if you were typing <code>g++ report.cpp</code>. You can run the program by typing <code>a.out</code> or <code>./a.out</code> if your <code>$PATH</code> variable was not set correctly.
+
+<li>Create a file named <code>README</code> with the following content:
+
+<pre class="prettyprint">
+Name: David Blaine       // please replace with YOUR name
+Person number: 1234-5678 // please replace with YOUR person numer
+</pre>
+
+</ol>
+
+<h3>How to submit</h3>
+
+Now that you have three files (hopefully working!) in the directory. There might also be the <code>a.out</code> file that was compiled and run. We do not want you to submit executables, only the source files. Hence, please type
+
+<pre class"prettyprint">
+make clean
+</pre>
+ at the prompt before submitting. The effect is to remove the <code>a.out</code> file, if any, that was created.
+
+ <p>
+ Finally, to submit, create a tar ball of the directory as follows.
+
+<pre>
+cd ..
+tar -cvf A0.tar A0/*
+submit_cse250 A0.tar
+</pre>
+
+Note that the last line only works if you logged in to your CSE account and 
+the tar file is there. All previous things can be done at home, as long as 
+you remember to upload the final tar file to your CSE account and run the 
+submit script from there.
+
+<h3>Grading</h3>
+<p>
+<ul>
+ <li>20 points: <code>README</code> is there
+ <li>50 points: <code>report.cpp</code> compiles and works as requested
+ <li>30 points: <code>Makefile</code> works
+</ul>
+
+</div>
+
+   <hr>                                                                        
+                                                                                
+    <div id="footer">                                                           
+      <div class="container">                                                   
+        <p class="credit muted"> Copyright &copy; <a href="http://www.cse.buffalo.edu/%7Ehungngo">Hung Q. Ngo</a> 2014, Designed with <a href="http://twitter.github.com/bootstrap/index.html">bootstrap</a> | Valid <a href="http://jigsaw.w3.org/css-validator/">CSS</a> &amp; <a href="http://validator.w3.org/">XHTML</a>
+      </div>                                                                    
+    </div>                                                                      
+                                                                                
+    <!-- Le javascript                                                          
+    ================================================== -->                      
+    <!-- Placed at the end of the document so the pages load faster -->         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript"                                              
+    src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </body>                                                                       
+</html>
