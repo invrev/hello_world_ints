@@ -366,9 +366,6 @@ ListNode* reverseLinkedRec(ListNode *head) {
 }
 
 
-
-
-
 //1,0,2,2,0,2,0,0
 int parition (int a[],int k,int size) {
     int q = -1;

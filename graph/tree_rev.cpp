@@ -25,9 +25,34 @@ struct TreeNodeP {
     {
 
     };
-
-
 };
+
+//struct for the interval tree
+struct iTreeNode {
+    int start;
+    int end;
+    int maxVal;
+    iTreeNode *left;
+    iTreeNode *right;
+    iTreeNode (int aStart,int aEnd) : 
+        start(aStart),end(aEnd),left(NULL),right(NULL) 
+    {
+
+    };
+};
+
+//visualize
+struct graphNode {
+    int outDeg;
+    int label;
+    vector<graphNode *> edges;
+    graphNode (int aLabel,int aOutDeg) : 
+        label(aLabel),outDeg(aOutDeg),edges(aOutDeg)
+    {
+    };
+};
+
+
 
 bool sameTree (TreeNode *p,TreeNode *q) {
     if (!p && !q) {
@@ -187,6 +212,7 @@ int find_max_height(TreeNode *root) {
             t_queue.pop();
             curr_visited--;
             if (curr_visited == 0) {
+                //STAY till end
                 max_height += 1;
                 curr_visited = nodes_to_visit;
                 nodes_to_visit = 0;
@@ -228,8 +254,24 @@ int find_min_height (TreeNode *root) {
         }
     }
     return min_height ;
-
 }
+
+
+//Finding the kth larget element by reverse inorder traversal
+void find_kth_largest_from_bst (TreeNode *root,int& k) {
+    if (!root) {
+        return;
+    }
+    find_kth_largest_from_bst (root->right,k);
+    k--;
+    if (k == 0) {
+        cout << "the kth largest " << root->val << endl;
+        return;
+    }
+    find_kth_largest_from_bst (root->left,k);
+}
+
+
 
 
 
@@ -253,4 +295,13 @@ int main () {
     find_max_height (root);
     //find_lca (root,root->left->right,root->left->right->left);
     find_lca (root,root->left->right,root->right->left);
+    int k = 2;
+    find_kth_largest_from_bst  (root,k);
+
+    graphNode *g = new graphNode(1,3);
+    g->edges[0] = new graphNode(2,2);
+    g->edges[1] = new graphNode(3,3);
+    g->edges[2] = new graphNode(4,2);
+    g->edges[3] = new graphNode(5,3);
+
 }
