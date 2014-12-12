@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
 using namespace std;
-
+//Hint : Generate substring think of this as the subset problem
 
 //struct UfNode {
 //    int val;
@@ -41,7 +41,8 @@ void gen_substring(string s) {
     int n = s.length() ;
     int no_of_strings = n - 1;
 
-    //string s = "abcd"
+    //GIVEN string s = "abcd"
+    
     //pass 0: (all the strings are of length 1)
     //a, b, c, d = 4 strings
     //pass 1: (all the strings are of length 2)

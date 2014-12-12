@@ -6,7 +6,7 @@ using namespace std;
 //255122344
 //255.122.34.4
 //k = depth
-void enum_ips (string input,int k,int start,string result,vector<string> &sv) {
+void enum_ips (string& input,int k,int start,string result,vector<string> &sv) {
    
     //Weed out the extra result 
     if (k == 4) {
