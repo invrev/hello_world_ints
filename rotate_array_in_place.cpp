@@ -56,8 +56,8 @@ int main () {
     int k = 3;
     //in_place_movement (arr_,len,k);
 
-    in_place_rec_movement (arr_,0,len-1);
-    in_place_rec_movement (arr_,0,k-1);
+    in_place_rec_movement (arr_,0,len-1); //a^R
+    in_place_rec_movement (arr_,0,k-1); 
     in_place_rec_movement (arr_,k,len-1);
 
 

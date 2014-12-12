@@ -8,11 +8,6 @@ using namespace std;
 * 2.At max,# of queens in the col = 1
 * 3.At max,# of queen in the diagonal = 1. (upward + downward)
 */
-struct queen_pos {
-    int row;
-    int col;
-    int diagonal;
-};
 
 void print_solution (int row[],int n) {
     for (int i=0;i<n+1;i++) {
@@ -30,9 +25,10 @@ void enum_queen(int input,int k,int c,int solution_size
           print_solution (row,k);
           solution_count++;
       } else {
-          k = k + 1;
-          for (int i=0;i<c;i++) {
+          k = k + 1; //iterate over row
+          for (int i=0;i<c;i++) { //iterate over columns
               //Think of board 
+              //left diag = row+col , right digonal = row-col + (no_of_queen - 1)
               if (col[i] && left_diag[k+i] && right_diag[k-i+(input -1)]) {
                   //cout << "( " << i << "," << k+i << "," << k-i+3 << ")" << endl;
                   row[k] = i;
@@ -41,7 +37,7 @@ void enum_queen(int input,int k,int c,int solution_size
                   left_diag[k+i]= false;
                   right_diag[k-i+(input -1)] = false;
                   enum_queen (input,k,c,solution_size,col,left_diag,right_diag,row,solution_count);
-                  //RESET
+                  //RESET /backtrack
                   col[i] = true;
                   left_diag[k+i]= true;
                   right_diag[k-i+(input -1)] = true;
@@ -53,9 +49,9 @@ void enum_queen(int input,int k,int c,int solution_size
 
 int main () {
     int no_of_queen = 5 ;
-    bool col[no_of_queen];
-    bool left_diag[no_of_queen * 2 -1];
-    bool right_diag[no_of_queen * 2 -1];
+    bool col[no_of_queen]; 
+    bool left_diag[no_of_queen * 2 -1]; //# of left digonals 
+    bool right_diag[no_of_queen * 2 -1]; //# of right digonals
     int row[no_of_queen];
 
     for (int i=0;i<no_of_queen;i++) {
