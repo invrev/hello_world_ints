@@ -30,6 +30,7 @@ int get_lis_length (int prev,int start,vector<int> input_sub) {
         return 0;    
     }else {
         start += 1;
+        //TODO : is there necessary of max computation ? any way always 2 calls if for loop 1 call else 2 calls
         int max = get_lis_length (prev,start,input_sub);
         int current = start - 1;
         if (input_sub[current] > prev ) {  

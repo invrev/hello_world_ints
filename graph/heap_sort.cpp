@@ -27,7 +27,7 @@ int getRightChild(int n) {
     return (2 * n) + 1;
 }
 
-
+//siftup
 void maxHeapify(int A[],int i,int n) {
     int l = getLeftChild(i);
     int r = getRightChild(i);
