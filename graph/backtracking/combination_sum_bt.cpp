@@ -1,4 +1,4 @@
-H#include<iostream>
+#include<iostream>
 #include<vector>
 #include<algorithm>
 using namespace std;
@@ -8,11 +8,11 @@ using namespace std;
 void print_solution (vector<int>& solution,vector<vector<int> >& solution_store) {
     vector<int> tmp ;
     for (int i=0;i<solution.size();i++) {
-        //cout << solution[i] << ",";
+        cout << solution[i] << ",";
         tmp.push_back(solution[i]);
     }
     solution_store.push_back(tmp);
-    //cout << endl;
+    cout << endl;
 }
 
 
@@ -43,29 +43,59 @@ void enum_combination_sum(vector<int>& input,int k,vector<int>& solution,int& to
 }
 
 //Select the item with repeatition
-void enum_combination_sum_with_repeat(vector<int>& input,int k,vector<int>& solution,int total_sum
+void enum_combination_sum_with_repeat(vector<int>& input,int k
+        ,vector<int>& solution,int total_sum
         ,vector<vector<int> >&solution_store) {
         //got the solution set
-        if (total_sum == 0 ) {
+        if (total_sum == 0) {
             print_solution (solution,solution_store);
             return;
         } 
         //NOTE : when its for loop w/o updating the start condition do not call the line #67
         for (int i=k+1; i<input.size();i++) {
             //pruning
-            if (input[k+1] > total_sum) {
+            if (input[i] > total_sum) {
                 return;
             }
             //NOTE : this version is not efficient due to # of calls
             solution.push_back(input[i]);
             total_sum = total_sum-input[i];
-//as it is pass by value ,no change in total sum while backtrack
-
+            //as it is pass by value ,no change in total sum while backtrack
             enum_combination_sum_with_repeat(input,k,solution,total_sum,solution_store);
             //backtrack add element
             solution.pop_back();
-            //total_sum = total_sum+input[i];
-            //enum_combination_sum_with_repeat(input,k,solution,total_sum,solution_store);
+            total_sum = total_sum+input[i];
+        }
+}
+
+
+//Select the item with repeatition
+void enum_combination_sum_wo_repeat(vector<int>& input,int k
+        ,vector<int>& solution,int total_sum
+        ,vector<vector<int> >&solution_store) {
+        //got the solution set
+        if (total_sum == 0) {
+            print_solution (solution,solution_store);
+            return;
+        } 
+        //NOTE : when its for loop w/o updating the start condition do not call the line #67
+        
+        for (int i = k+1 ;  i<input.size();i++) {
+            //pruning
+            if (input[i] > total_sum) {
+                return;
+            }
+            //NOTE : this version is not efficient due to # of calls
+            solution.push_back(input[i]);
+            total_sum = total_sum-input[i];
+            //as it is pass by value ,no change in total sum while backtrack
+            enum_combination_sum_wo_repeat(input,i,solution,total_sum,solution_store);
+            //backtrack add element
+            solution.pop_back();
+            total_sum = total_sum+input[i];
+            while (i < input.size() && input[i] == input[i+1])  {
+                i++;
+            }
         }
 }
 
@@ -76,5 +106,9 @@ int main () {
     sort(input.begin(),input.end());
     vector<int> solution;
     vector< vector<int> > solution_store;
-    enum_combination_sum(input,-1,solution,sum,solution_store);
+    //enum_combination_sum(input,-1,solution,sum,solution_store);
+    enum_combination_sum_with_repeat(input,-1,solution,sum,solution_store);
+    cout << "subset sum w/o repeat" << endl;
+    enum_combination_sum_wo_repeat (input,-1,solution,sum,solution_store);
+
 }
