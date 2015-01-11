@@ -1,4 +1,4 @@
-#include<iostream>
+H#include<iostream>
 #include<vector>
 #include<algorithm>
 using namespace std;
@@ -59,6 +59,8 @@ void enum_combination_sum_with_repeat(vector<int>& input,int k,vector<int>& solu
             //NOTE : this version is not efficient due to # of calls
             solution.push_back(input[i]);
             total_sum = total_sum-input[i];
+//as it is pass by value ,no change in total sum while backtrack
+
             enum_combination_sum_with_repeat(input,k,solution,total_sum,solution_store);
             //backtrack add element
             solution.pop_back();
